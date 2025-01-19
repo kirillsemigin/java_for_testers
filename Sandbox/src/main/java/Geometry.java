@@ -4,24 +4,24 @@ public class Geometry {
         printSquareArea(5.0);
         printSquareArea(3.0);
 
-        
+
         printRectangleArea(3.0, 5.0);
         printRectangleArea(7.0, 9.0);
     }
 
-    private static void printRectangleArea(double a, double b) {
+    private static void printRectangleArea(double a, double b) { // выводим информацию о площади квадарата
         System.out.println("Площадь прямоугольника со стронами " + a + " и " + b + " = " + rectangleArea(a, b));
     }
 
-    private static double rectangleArea(double a, double b) {
+    private static double rectangleArea(double a, double b) { // производим расчет площади квадрата
         return a * b;
     }
 
-    static void printSquareArea(double side) {
+    static void printSquareArea(double side) { // выводим информацию о площади треугольника
         System.out.println("Площадь квадрата со стороной " + side + " = " + squareArea(side));
     }
 
-    private static double squareArea(double a) {
+    private static double squareArea(double a) { // производим расчет площади треугольника
         return a * a;
     }
 }
