@@ -14,16 +14,16 @@ public class Triangle {
     }
 
 
-    private static double semiPerimeter(double a, double b, double c) {
+    public static double semiPerimeter(double a, double b, double c) {
         double p = a + b + c;
         return p;
     }
 
-    private static double triangleArea(double a, double b, double c, double p) {
+    public static double triangleArea(double a, double b, double c, double p) {
         return Math.sqrt(p * (p - a) * (p - b) * (p - c));
     }
 
-    private static double trianglePerimeter(double a, double b, double c) {
+    public static double trianglePerimeter(double a, double b, double c) {
         return a + b + c;
     }
 }
