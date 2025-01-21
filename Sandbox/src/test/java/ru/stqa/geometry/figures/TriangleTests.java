@@ -26,7 +26,13 @@ public class TriangleTests {
     @Test
     void calculateArea() {
         double result = Triangle.triangleArea(10, 20,20);
-        Assertions.assertEquals();
+        Assertions.assertEquals(96.82458365518542, result);
+    }
+
+    @Test
+    void calculateArea_negative() {
+        double result = Triangle.triangleArea(7, 5,3);
+        Assertions.assertEquals(7, result);
     }
 
 }
