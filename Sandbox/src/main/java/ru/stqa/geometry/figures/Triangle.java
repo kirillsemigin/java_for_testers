@@ -8,6 +8,12 @@ public class Triangle {
         System.out.println(text);
     }
 
+    public static void printTrianglePerimeter(double a, double b, double c) {
+        var text = String.format("Периметр треугольника со сторонами %f, %f, и %f = %f", a, b, c, trianglePerimeter(a, b, c));
+        System.out.println(text);
+    }
+
+
     private static double semiPerimeter(double a, double b, double c) {
         double p = a + b + c;
         return p;
@@ -15,5 +21,9 @@ public class Triangle {
 
     private static double triangleArea(double a, double b, double c, double p) {
         return Math.sqrt(p * (p - a) * (p - b) * (p - c));
+    }
+
+    private static double trianglePerimeter(double a, double b, double c) {
+        return a + b + c;
     }
 }

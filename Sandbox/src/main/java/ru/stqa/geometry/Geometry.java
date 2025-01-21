@@ -16,6 +16,12 @@ public class Geometry {
 
         Triangle.printTriangleArea(10.0, 20.0, 20.0);
         Triangle.printTriangleArea(10, 15, 20);
+        Triangle.printTriangleArea(7.0, 5.0, 3.0);
+
+
+        Triangle.printTrianglePerimeter(10.0, 10.0, 20.0);
+        Triangle.printTrianglePerimeter(20, 20, 30);
+
     }
 
 }
