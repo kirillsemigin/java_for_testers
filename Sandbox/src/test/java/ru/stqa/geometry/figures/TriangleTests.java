@@ -23,4 +23,10 @@ public class TriangleTests {
         Assertions.assertEquals(40, result);
     }
 
+    @Test
+    void calculateArea() {
+        double result = Triangle.triangleArea(10, 20,20);
+        Assertions.assertEquals();
+    }
+
 }
