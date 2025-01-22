@@ -7,31 +7,30 @@ public class TriangleTests {
 
     @Test
     void calculatePerimeter() {
-        double result = Triangle.trianglePerimeter(10, 10,20);
-        Assertions.assertEquals(40, result);
+        Assertions.assertEquals(40, new Triangle(10, 10, 20).trianglePerimeter());
     }
 
     @Test
     void calculatePerimeter_negative() {
-        double result = Triangle.trianglePerimeter(-10, 10,20);
-        Assertions.assertEquals(40, result);
+        Assertions.assertEquals(40, new Triangle(-10, 10,20).trianglePerimeter());
     }
 
     @Test
     void calculatePerimeter_negative2() {
-        double result = Triangle.trianglePerimeter(20, 20,30);
-        Assertions.assertEquals(40, result);
+        Assertions.assertEquals(40, new Triangle(20, 20,30).trianglePerimeter());
     }
 
     @Test
     void calculateArea() {
-        double result = Triangle.triangleArea(10, 20,20);
+        var s = new Triangle(10, 20, 20);
+        double result = s.area();
         Assertions.assertEquals(96.82458365518542, result);
     }
 
     @Test
     void calculateArea_negative() {
-        double result = Triangle.triangleArea(7, 5,3);
+        var s = new Triangle(10, 20, 20);
+        double result = s.area();
         Assertions.assertEquals(7, result);
     }
 

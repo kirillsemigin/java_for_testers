@@ -14,13 +14,13 @@ public class Geometry {
         Rectangle.printRectangleArea(3.0, 5.0);
         Rectangle.printRectangleArea(7.0, 9.0);
 
-        Triangle.printTriangleArea(10.0, 10.0, 10.0);
-        Triangle.printTriangleArea(10, 15, 20);
-        Triangle.printTriangleArea(7.0, 5.0, 3.0);
+        Triangle.printTriangleArea(new Triangle(10.0, 20.0, 20.0));
+        Triangle.printTriangleArea(new Triangle(10.0, 15.0, 20.0));
+        Triangle.printTriangleArea(new Triangle(7.0, 5.0, 3.0));
 
 
-        Triangle.printTrianglePerimeter(10.0, 10.0, 20.0);
-        Triangle.printTrianglePerimeter(20, 20, 30);
+        Triangle.printTrianglePerimeter(new Triangle(10, 10, 20));
+        Triangle.printTrianglePerimeter(new Triangle(20, 20, 30));
 
     }
 
