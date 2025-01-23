@@ -14,12 +14,12 @@ public class Triangle {
 
 
     public static void printTriangleArea(Triangle s) {
-        var text = String.format("Площадь треугольника = %f", s.area());
+        var text = String.format("Площадь треугольника со сторонами %.2f, %.2f и %.2f = %.2f", s.a, s.b, s.c, s.area());
         System.out.println(text);
     }
 
     public static void printTrianglePerimeter(Triangle s) {
-        var text = String.format("Периметр треугольника = %f", s.trianglePerimeter());
+        var text = String.format("Периметр треугольника со сторонами сторонами %.2f, %.2f и %.2f = %.2f", s.a, s.b, s.c, s.trianglePerimeter());
         System.out.println(text);
     }
 
