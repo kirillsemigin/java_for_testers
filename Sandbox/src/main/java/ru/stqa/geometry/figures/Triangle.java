@@ -5,6 +5,7 @@ public class Triangle {
     private double a;
     private double b;
     private double c;
+    private double p = semiPerimeter();
 
     public Triangle(double a, double b, double c) {
         this.a = a;
@@ -25,7 +26,7 @@ public class Triangle {
 
 
     public double area() {
-        return Math.sqrt(semiPerimeter() * (semiPerimeter() - this.a) * (semiPerimeter() - this.b) * (semiPerimeter() - this.c));
+        return Math.sqrt(p * (p - this.a) * (p - this.b) * (p - this.c));
     }
 
     public double trianglePerimeter() {
