@@ -25,10 +25,14 @@ public class Triangle {
 
 
     public double area() {
-        return Math.sqrt(((this.a + this.b + this.c)/2) * (((this.a + this.b + this.c)/2) - this.a) * (((this.a + this.b + this.c)/2) - this.b) * (((this.a + this.b + this.c)/2) - this.c));
+        return Math.sqrt(semiPerimeter() * (semiPerimeter() - this.a) * (semiPerimeter() - this.b) * (semiPerimeter() - this.c));
     }
 
     public double trianglePerimeter() {
         return this.a + this.b + this.c;
+    }
+
+    private double semiPerimeter() {
+        return trianglePerimeter() / 2;
     }
 }
