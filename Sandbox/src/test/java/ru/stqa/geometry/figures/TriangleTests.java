@@ -5,33 +5,91 @@ import org.junit.jupiter.api.Test;
 
 public class TriangleTests {
 
+
+   @Test
+   void checkTriangle() {
+       try {
+           new Triangle(100, 20, 20);
+           Assertions.fail("It is a triangle");
+       } catch (ArithmeticException exception) {
+           //Ok
+       }
+   }
+
     @Test
     void calculatePerimeter() {
-        Assertions.assertEquals(40, new Triangle(10, 10, 20).trianglePerimeter());
+       double result = new Triangle(10, 15, 20).trianglePerimeter();
+        Assertions.assertEquals(45, result);
     }
 
     @Test
-    void calculatePerimeter_negative() {
-        Assertions.assertEquals(40, new Triangle(-10, 10,20).trianglePerimeter());
+    void cannotCalculatePerimeter() {
+        try {
+            new Triangle(-10, 20, 20);
+            Assertions.fail("There are no negative sides in a Triangle");
+        } catch (IllegalArgumentException exception) {
+            //Ok
+        }
     }
 
     @Test
-    void calculatePerimeter_negative2() {
-        Assertions.assertEquals(40, new Triangle(20, 20,30).trianglePerimeter());
+    void cannotCalculatePerimeter_2() {
+        try {
+            new Triangle(10, -20, 20);
+            Assertions.fail("There are no negative sides in a Triangle");
+        } catch (IllegalArgumentException exception) {
+            //Ok
+        }
     }
+
+    @Test
+    void cannotCalculatePerimeter_3() {
+        try {
+            new Triangle(10, 20, -20);
+            Assertions.fail("There are no negative sides in a Triangle");
+        } catch (IllegalArgumentException exception) {
+            //Ok
+        }
+    }
+
 
     @Test
     void calculateArea() {
-        var s = new Triangle(10, 20, 20);
-        double result = s.area();
+       double result = new Triangle(10, 20, 20).area();
         Assertions.assertEquals(96.82458365518542, result);
     }
 
     @Test
-    void calculateArea_negative() {
-        var s = new Triangle(10, 20, 20);
-        double result = s.area();
-        Assertions.assertEquals(7, result);
+    void cannotCalculateArea() {
+        try {
+            new Triangle(-10, 20, 20);
+            Assertions.fail("There are no negative sides in a Triangle");
+        } catch (IllegalArgumentException exception) {
+            //Ok
+        }
+
     }
 
+    @Test
+    void cannotCalculateArea_2() {
+        try {
+            new Triangle(10, -20, 20);
+            Assertions.fail("There are no negative sides in a Triangle");
+        } catch (IllegalArgumentException exception) {
+            //Ok
+        }
+    }
+
+    @Test
+    void cannotCalculateArea_3() {
+        try {
+            new Triangle(10, 20, -20);
+            Assertions.fail("There are no negative sides in a Triangle");
+        } catch (IllegalArgumentException exception) {
+            //Ok
+        }
+    }
 }
+
+
+

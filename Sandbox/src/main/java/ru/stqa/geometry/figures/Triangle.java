@@ -11,6 +11,12 @@ public class Triangle {
         this.a = a;
         this.b = b;
         this.c = c;
+        if (a <= 0 || b <= 0 || c <= 0) {
+            throw new IllegalArgumentException("Triangle side can not be negative or equals to zero");
+      }
+        if (a + b <= c || a + c <= b || b + c <= a) {
+            throw new ArithmeticException("It is not a triangle. One side is bigger than the sum of the other two sides");
+        }
     }
 
 

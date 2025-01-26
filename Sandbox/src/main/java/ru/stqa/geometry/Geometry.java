@@ -19,7 +19,7 @@ public class Geometry {
         Triangle.printTriangleArea(new Triangle(7.0, 5.0, 3.0));
 
 
-        Triangle.printTrianglePerimeter(new Triangle(10, 10, 20));
+        Triangle.printTrianglePerimeter(new Triangle(10, 11, 20));
         Triangle.printTrianglePerimeter(new Triangle(20, 20, 30));
 
     }
