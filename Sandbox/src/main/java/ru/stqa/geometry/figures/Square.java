@@ -1,6 +1,6 @@
 package ru.stqa.geometry.figures;
 
-public record Square (double side) {
+public record Square(double side) {
 
     public Square {
         if (side < 0) {
