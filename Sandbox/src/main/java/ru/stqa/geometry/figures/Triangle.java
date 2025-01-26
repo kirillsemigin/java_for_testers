@@ -1,16 +1,11 @@
 package ru.stqa.geometry.figures;
 
-public class Triangle {
+import java.util.Objects;
 
-    private double a;
-    private double b;
-    private double c;
+public record Triangle(double a, double b, double c) {
 
+    public Triangle {
 
-    public Triangle(double a, double b, double c) {
-        this.a = a;
-        this.b = b;
-        this.c = c;
         if (a <= 0 || b <= 0 || c <= 0) {
             throw new IllegalArgumentException("Triangle side can not be negative or equals to zero");
       }
@@ -40,4 +35,21 @@ public class Triangle {
         return this.a + this.b + this.c;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Triangle triangle = (Triangle) o;
+        return (Double.compare(a, triangle.a) == 0 && Double.compare(b, triangle.b) == 0 && Double.compare(c, triangle.c) == 0)
+                || (Double.compare(a, triangle.b) == 0 && Double.compare(b, triangle.c) == 0 && Double.compare(c, triangle.a) == 0)
+                || (Double.compare(a, triangle.c) == 0 && Double.compare(b, triangle.a) == 0 && Double.compare(c, triangle.b) == 0)
+                || (Double.compare(a, triangle.a) == 0 && Double.compare(b, triangle.c) == 0 && Double.compare(c, triangle.b) == 0)
+                || (Double.compare(a, triangle.b) == 0 && Double.compare(b, triangle.a) == 0 && Double.compare(c, triangle.c) == 0)
+                || (Double.compare(a, triangle.c) == 0 && Double.compare(b, triangle.b) == 0 && Double.compare(c, triangle.a) == 0);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return 1;
+    }
 }
