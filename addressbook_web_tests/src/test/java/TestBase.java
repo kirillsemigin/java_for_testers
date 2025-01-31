@@ -43,4 +43,10 @@ public class TestBase {
             return false;
         }
     }
+
+    protected void openGroupsPage() {
+        if (!isElementPresent(By.name("new"))) {
+            driver.findElement(By.linkText("groups")).click();
+        }
+    }
 }

@@ -6,18 +6,14 @@ public class GroupCreationTests extends TestBase {
 
     @Test
     public void CanCreateGroup() {
-        if (!isElementPresent(By.name("new"))) {
-            driver.findElement(By.linkText("groups")).click();
-        }
+        openGroupsPage();
         createGroup("group name", "group header", "group footer");
 
     }
 
     @Test
     public void CanCreateGroupWithEmptyName() {
-        if (!isElementPresent(By.name("new"))) {
-            driver.findElement(By.linkText("groups")).click();
-        }
+        openGroupsPage();
         driver.findElement(By.linkText("groups")).click();
         createGroup("", "", "");
 
