@@ -1,34 +1,9 @@
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 
-public class DeleteGroupTest { // тест на удаление группы
-    private WebDriver driver;
+public class DeleteGroupTest extends TestBase { // тест на удаление группы
 
-    @BeforeEach
-    public void setUp() {  // предусловие для теста. Переход по адресу. Авторизация на сайте
-        driver = new ChromeDriver(); // используемый браузер
-        driver.get("http://localhost/addressbook/");
-        driver.manage().window().setSize(new Dimension(1936, 1056));
-        driver.findElement(By.name("user")).click();
-        driver.findElement(By.name("user")).sendKeys("admin");
-        driver.findElement(By.name("pass")).click();
-        driver.findElement(By.name("pass")).sendKeys("secret");
-        driver.findElement(By.xpath("//input[@value=\'Login\']")).click();
-
-    }
-
-    @AfterEach
-    public void tearDown() { // действия после выполнения теста
-        driver.findElement(By.linkText("Logout")).click(); // разлогинивает на сайте
-        driver.quit();
-    }
 
     @Test
     public void deleteGroupTest() { // тест на удаление группы
@@ -53,12 +28,4 @@ public class DeleteGroupTest { // тест на удаление группы
 
     }
 
-    private boolean isElementPresent(By locator) {
-        try {
-            driver.findElement(locator);
-            return true;
-        } catch (NoSuchElementException exception) {
-            return false;
-        }
-    }
 }
