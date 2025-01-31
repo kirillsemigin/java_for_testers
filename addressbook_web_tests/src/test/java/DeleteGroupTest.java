@@ -8,12 +8,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 
-public class DeleteGroupTest {
+public class DeleteGroupTest { // тест на удаление группы
     private WebDriver driver;
 
     @BeforeEach
-    public void setUp() {
-        driver = new ChromeDriver();
+    public void setUp() {  // предусловие для теста. Переход по адресу. Авторизация на сайте
+        driver = new ChromeDriver(); // используемый браузер
         driver.get("http://localhost/addressbook/");
         driver.manage().window().setSize(new Dimension(1936, 1056));
         driver.findElement(By.name("user")).click();
@@ -25,17 +25,17 @@ public class DeleteGroupTest {
     }
 
     @AfterEach
-    public void tearDown() {
-        driver.findElement(By.linkText("Logout")).click();
+    public void tearDown() { // действия после выполнения теста
+        driver.findElement(By.linkText("Logout")).click(); // разлогинивает на сайте
         driver.quit();
     }
 
     @Test
-    public void deleteGroupTest() {
-        if (!isElementPresent(By.name("new"))) {
+    public void deleteGroupTest() { // тест на удаление группы
+        if (!isElementPresent(By.name("new"))) { // проверка наличия хотя бы одной группы для удаления
             driver.findElement(By.linkText("groups")).click();
         }
-        if (!isElementPresent(By.name("selected[]"))) {
+        if (!isElementPresent(By.name("selected[]"))) { //создание группы в том случае если ни одной группы не найдено
             driver.findElement(By.name("new")).click();
             driver.findElement(By.name("group_name")).click();
             driver.findElement(By.name("group_name")).sendKeys("group name");
