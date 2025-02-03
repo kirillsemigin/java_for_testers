@@ -8,7 +8,7 @@ public class GroupCreationTests extends TestBase {
     @Test
     public void CanCreateGroup() {
         openGroupsPage();
-        createGroup (new GroupData("name", "header", "footer"));
+        createGroup (new GroupData("group_name", "group_header", "group_footer"));
 
     }
 
@@ -16,7 +16,7 @@ public class GroupCreationTests extends TestBase {
     public void CanCreateGroupWithEmptyName() {
         openGroupsPage();
         driver.findElement(By.linkText("groups")).click();
-        createGroup(new GroupData());
+        createGroup(new GroupData("", "", ""));
 
     }
 }
