@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class TestBase {
+
+    protected static ApplicationManager app; // ссылка на ApplicationManager
     protected static WebDriver driver;
 
     protected void createGroup(GroupData group) {
