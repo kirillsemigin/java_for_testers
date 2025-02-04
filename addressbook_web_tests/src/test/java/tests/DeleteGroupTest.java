@@ -11,7 +11,7 @@ public class DeleteGroupTest extends TestBase { // тест на удалени�
     public void deleteGroupTest() { // тест на удаление группы
         app.groups().openGroupsPage();
         if (!app.groups.isGroupPresent(app)) { //создание группы в том случае если ни одной группы не найдено
-            app.createGroup(new GroupData("group name", "group header", "group footer"));
+            app.groups.createGroup(new GroupData("group name", "group header", "group footer"), app);
 
         }
         app.removeGroup();

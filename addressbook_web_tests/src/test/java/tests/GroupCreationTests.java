@@ -9,13 +9,13 @@ public class GroupCreationTests extends TestBase {
     @Test
     public void CanCreateGroup() {
         app.groups().openGroupsPage();
-        app.createGroup(new GroupData("group name", "group header", "group footer"));
+        app.groups.createGroup(new GroupData("group name", "group header", "group footer"), app);
     }
 
     @Test
     public void CanCreateGroupWithEmptyName() {
         app.groups().openGroupsPage();
-        app.createGroup(new GroupData());
+        app.groups.createGroup(new GroupData(), app);
     }
 
     @Test
@@ -23,6 +23,6 @@ public class GroupCreationTests extends TestBase {
         app.groups().openGroupsPage();
         var emptyGroup = new GroupData();
         var groupWithName = emptyGroup.withName("some name");
-        app.createGroup(groupWithName);
+        app.groups.createGroup(groupWithName, app);
     }
 }
