@@ -16,4 +16,8 @@ public class GroupHelper {
             manager.driver.findElement(By.linkText("groups")).click();
         }
     }
+
+    public boolean isGroupPresent(ApplicationManager manager) {
+        return manager.isElementPresent(By.name("selected[]"));
+    }
 }

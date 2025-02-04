@@ -10,7 +10,7 @@ public class ApplicationManager {
 
     protected WebDriver driver;
     private LoginHelper session;// ссылка на LoginHelper
-    private GroupHelper groups;
+    public GroupHelper groups;
 
    public void init() {
         if (driver == null) {
@@ -55,10 +55,6 @@ public class ApplicationManager {
         driver.findElement(By.name("group_footer")).sendKeys(group.footer());
         driver.findElement(By.name("submit")).click();
         driver.findElement(By.linkText("group page")).click();
-    }
-
-    public boolean isGroupPresent() {
-        return isElementPresent(By.name("selected[]"));
     }
 
     public void removeGroup() {
