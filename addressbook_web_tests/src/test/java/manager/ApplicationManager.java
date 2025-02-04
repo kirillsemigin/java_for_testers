@@ -1,5 +1,5 @@
 package manager;
-
+import manager.LoginHelper;
 import model.GroupData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class ApplicationManager {
+
     protected WebDriver driver;
     private LoginHelper session; // ссылка на LoginHelper
 
@@ -17,19 +18,13 @@ public class ApplicationManager {
             Runtime.getRuntime().addShutdownHook(new Thread(driver::quit));
             driver.get("http://localhost/addressbook/");
             driver.manage().window().setSize(new Dimension(1936, 1056));
-            login("admin", "secret");
+            session().login("admin", "secret");
         }
-    }
-
-    private void login(String user, String password) { // метод для авторизации на сайте
-        driver.findElement(By.name("user")).sendKeys(user);
-        driver.findElement(By.name("pass")).sendKeys(password);
-        driver.findElement(By.xpath("//input[@value=\'Login\']")).click();
     }
 
     public LoginHelper session () {
        if (session == null) {
-           session = new LoginHelper();
+           session = new LoginHelper(this);
        }
        return session;
     }
