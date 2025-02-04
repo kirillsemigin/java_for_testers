@@ -23,7 +23,7 @@ public class TestBase {
         driver.findElement(By.linkText("group page")).click();
     }
 
-    protected static void removeGroup() {
+    protected void removeGroup() {
         driver.findElement(By.name("selected[]")).click();
         driver.findElement(By.name("delete")).click();
         driver.findElement(By.linkText("group page")).click();
@@ -34,6 +34,10 @@ public class TestBase {
         if (app == null) { // инициализация переменной app
             app = new ApplicationManager();
         }
+        init(); // метод инициализации (переход по адресу, ввод логина и пароля)
+    }
+
+    private void init() {
         if (driver == null) {
             driver = new ChromeDriver();
             Runtime.getRuntime().addShutdownHook(new Thread(driver::quit));
