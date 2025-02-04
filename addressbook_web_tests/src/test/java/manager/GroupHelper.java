@@ -33,4 +33,10 @@ public class GroupHelper {
         manager.driver.findElement(By.name("submit")).click();
         manager.driver.findElement(By.linkText("group page")).click();
     }
+
+    public void removeGroup(ApplicationManager manager) {
+        manager.driver.findElement(By.name("selected[]")).click();
+        manager.driver.findElement(By.name("delete")).click();
+        manager.driver.findElement(By.linkText("group page")).click();
+    }
 }

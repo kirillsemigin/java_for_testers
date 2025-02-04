@@ -14,7 +14,7 @@ public class DeleteGroupTest extends TestBase { // тест на удалени�
             app.groups.createGroup(new GroupData("group name", "group header", "group footer"), app);
 
         }
-        app.removeGroup();
+        app.groups.removeGroup(app);
 
     }
 
