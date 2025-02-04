@@ -23,6 +23,13 @@ public class ApplicationManager {
         }
     }
 
+    public LoginHelper session () {
+       if (session == null) {
+           session = new LoginHelper();
+       }
+       return session;
+    }
+
     public boolean isElementPresent(By locator) {
         try {
             driver.findElement(locator);
