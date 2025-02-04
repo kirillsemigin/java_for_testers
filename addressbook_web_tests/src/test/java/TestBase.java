@@ -6,18 +6,6 @@ public class TestBase {
 
     protected static ApplicationManager app; // ссылка на ApplicationManager
 
-    protected void createGroup(GroupData group) {
-        ApplicationManager.driver.findElement(By.name("new")).click();
-        ApplicationManager.driver.findElement(By.name("group_name")).click();
-        ApplicationManager.driver.findElement(By.name("group_name")).sendKeys(group.name());
-        ApplicationManager.driver.findElement(By.name("group_header")).click();
-        ApplicationManager.driver.findElement(By.name("group_header")).sendKeys(group.header());
-        ApplicationManager.driver.findElement(By.name("group_footer")).click();
-        ApplicationManager.driver.findElement(By.name("group_footer")).sendKeys(group.footer());
-        ApplicationManager.driver.findElement(By.name("submit")).click();
-        ApplicationManager.driver.findElement(By.linkText("group page")).click();
-    }
-
     protected void removeGroup() {
         ApplicationManager.driver.findElement(By.name("selected[]")).click();
         ApplicationManager.driver.findElement(By.name("delete")).click();
