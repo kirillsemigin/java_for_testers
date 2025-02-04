@@ -1,9 +1,7 @@
 import model.GroupData;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 public class TestBase {
 
@@ -32,19 +30,7 @@ public class TestBase {
         if (app == null) { // инициализация переменной app
             app = new ApplicationManager();
         }
-        init(); // метод инициализации (переход по адресу, ввод логина и пароля)
-    }
-
-    private void init() {
-        if (ApplicationManager.driver == null) {
-            ApplicationManager.driver = new ChromeDriver();
-            Runtime.getRuntime().addShutdownHook(new Thread(ApplicationManager.driver::quit));
-            ApplicationManager.driver.get("http://localhost/addressbook/");
-            ApplicationManager.driver.manage().window().setSize(new Dimension(1936, 1056));
-            ApplicationManager.driver.findElement(By.name("user")).sendKeys("admin");
-            ApplicationManager.driver.findElement(By.name("pass")).sendKeys("secret");
-            ApplicationManager.driver.findElement(By.xpath("//input[@value=\'Login\']")).click();
-        }
+        app.init(); // метод инициализации (переход по адресу, ввод логина и пароля)
     }
 
     protected boolean isElementPresent(By locator) {
