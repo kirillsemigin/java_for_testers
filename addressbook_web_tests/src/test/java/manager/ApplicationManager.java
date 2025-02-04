@@ -4,6 +4,7 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 
 public class ApplicationManager {
 
@@ -11,9 +12,14 @@ public class ApplicationManager {
     private LoginHelper session;// ссылка на LoginHelper
     private GroupHelper groups;
 
-   public void init() {
+   public void init(String Browser) {
         if (driver == null) {
-            driver = new ChromeDriver();
+            if ("Chrome".equals(Browser)) {
+                driver = new ChromeDriver();
+            } else if ("Edge".equals(Browser)) {
+                driver = new EdgeDriver();
+            } else
+                throw new IllegalArgumentException(String.format("Unknown browser %s", Browser));
             Runtime.getRuntime().addShutdownHook(new Thread(driver::quit));
             driver.get("http://localhost/addressbook/");
             driver.manage().window().setSize(new Dimension(1936, 1056));
