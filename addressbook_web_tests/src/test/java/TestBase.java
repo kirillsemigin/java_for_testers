@@ -1,4 +1,3 @@
-import model.GroupData;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.By;
 
@@ -18,12 +17,6 @@ public class TestBase {
             app = new ApplicationManager();
         }
         app.init(); // метод инициализации (переход по адресу, ввод логина и пароля)
-    }
-
-    protected void openGroupsPage() {
-        if (!app.isElementPresent(By.name("new"))) {
-            ApplicationManager.driver.findElement(By.linkText("groups")).click();
-        }
     }
 
     protected boolean isGroupPresent() {
