@@ -9,6 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class ApplicationManager {
     protected static WebDriver driver;
+    private LoginHelper session; // ссылка на LoginHelper
 
    public void init() {
         if (driver == null) {
