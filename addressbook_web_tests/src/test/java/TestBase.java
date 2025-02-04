@@ -1,7 +1,6 @@
 import model.GroupData;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 
 public class TestBase {
 
@@ -33,22 +32,13 @@ public class TestBase {
         app.init(); // метод инициализации (переход по адресу, ввод логина и пароля)
     }
 
-    protected boolean isElementPresent(By locator) {
-        try {
-            ApplicationManager.driver.findElement(locator);
-            return true;
-        } catch (NoSuchElementException exception) {
-            return false;
-        }
-    }
-
     protected void openGroupsPage() {
-        if (!isElementPresent(By.name("new"))) {
+        if (!app.isElementPresent(By.name("new"))) {
             ApplicationManager.driver.findElement(By.linkText("groups")).click();
         }
     }
 
     protected boolean isGroupPresent() {
-        return isElementPresent(By.name("selected[]"));
+        return app.isElementPresent(By.name("selected[]"));
     }
 }
