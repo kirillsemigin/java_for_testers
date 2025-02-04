@@ -5,12 +5,6 @@ public class TestBase {
 
     protected static ApplicationManager app; // ссылка на ApplicationManager
 
-    protected void removeGroup() {
-        ApplicationManager.driver.findElement(By.name("selected[]")).click();
-        ApplicationManager.driver.findElement(By.name("delete")).click();
-        ApplicationManager.driver.findElement(By.linkText("group page")).click();
-    }
-
     @BeforeEach
     public void setUp() {
         if (app == null) { // инициализация переменной app

@@ -12,7 +12,7 @@ public class DeleteGroupTest extends TestBase { // тест на удалени�
             app.createGroup(new GroupData("group name", "group header", "group footer"));
 
         }
-        removeGroup();
+        app.removeGroup();
 
     }
 
