@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class ApplicationManager {
-    protected static WebDriver driver;
+    protected WebDriver driver;
     private LoginHelper session; // ссылка на LoginHelper
 
    public void init() {
@@ -17,13 +17,13 @@ public class ApplicationManager {
             Runtime.getRuntime().addShutdownHook(new Thread(driver::quit));
             driver.get("http://localhost/addressbook/");
             driver.manage().window().setSize(new Dimension(1936, 1056));
-            login();
+            login("admin", "secret");
         }
     }
 
-    private static void login() {
-        driver.findElement(By.name("user")).sendKeys("admin");
-        driver.findElement(By.name("pass")).sendKeys("secret");
+    private void login(String user, String password) { // метод для авторизации на сайте
+        driver.findElement(By.name("user")).sendKeys(user);
+        driver.findElement(By.name("pass")).sendKeys(password);
         driver.findElement(By.xpath("//input[@value=\'Login\']")).click();
     }
 
