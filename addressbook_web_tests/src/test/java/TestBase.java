@@ -31,6 +31,9 @@ public class TestBase {
 
     @BeforeEach
     public void setUp() {
+        if (app == null) { // инициализация переменной app
+            app = new ApplicationManager();
+        }
         if (driver == null) {
             driver = new ChromeDriver();
             Runtime.getRuntime().addShutdownHook(new Thread(driver::quit));
