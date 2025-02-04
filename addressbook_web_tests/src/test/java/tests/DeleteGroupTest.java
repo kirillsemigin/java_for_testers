@@ -9,7 +9,7 @@ public class DeleteGroupTest extends TestBase { // тест на удалени�
 
     @Test
     public void deleteGroupTest() { // тест на удаление группы
-        app.openGroupsPage();
+        app.groups().openGroupsPage();
         if (!app.isGroupPresent()) { //создание группы в том случае если ни одной группы не найдено
             app.createGroup(new GroupData("group name", "group header", "group footer"));
 

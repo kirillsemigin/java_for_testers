@@ -1,5 +1,4 @@
 package manager;
-import manager.LoginHelper;
 import model.GroupData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -10,7 +9,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class ApplicationManager {
 
     protected WebDriver driver;
-    private LoginHelper session; // ссылка на LoginHelper
+    private LoginHelper session;// ссылка на LoginHelper
+    private GroupHelper groups;
 
    public void init() {
         if (driver == null) {
@@ -27,6 +27,13 @@ public class ApplicationManager {
            session = new LoginHelper(this);
        }
        return session;
+    }
+
+    public GroupHelper groups () {
+       if (groups == null) {
+           groups = new GroupHelper(this);
+       }
+       return groups;
     }
 
     public boolean isElementPresent(By locator) {
@@ -48,12 +55,6 @@ public class ApplicationManager {
         driver.findElement(By.name("group_footer")).sendKeys(group.footer());
         driver.findElement(By.name("submit")).click();
         driver.findElement(By.linkText("group page")).click();
-    }
-
-    public void openGroupsPage() {
-        if (!isElementPresent(By.name("new"))) {
-            driver.findElement(By.linkText("groups")).click();
-        }
     }
 
     public boolean isGroupPresent() {
