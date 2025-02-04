@@ -19,7 +19,4 @@ public class TestBase {
         app.init(); // метод инициализации (переход по адресу, ввод логина и пароля)
     }
 
-    protected boolean isGroupPresent() {
-        return app.isElementPresent(By.name("selected[]"));
-    }
 }

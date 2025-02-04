@@ -46,4 +46,8 @@ public class ApplicationManager {
             driver.findElement(By.linkText("groups")).click();
         }
     }
+
+    protected boolean isGroupPresent() {
+        return isElementPresent(By.name("selected[]"));
+    }
 }
