@@ -17,10 +17,14 @@ public class ApplicationManager {
             Runtime.getRuntime().addShutdownHook(new Thread(driver::quit));
             driver.get("http://localhost/addressbook/");
             driver.manage().window().setSize(new Dimension(1936, 1056));
-            driver.findElement(By.name("user")).sendKeys("admin");
-            driver.findElement(By.name("pass")).sendKeys("secret");
-            driver.findElement(By.xpath("//input[@value=\'Login\']")).click();
+            login();
         }
+    }
+
+    private static void login() {
+        driver.findElement(By.name("user")).sendKeys("admin");
+        driver.findElement(By.name("pass")).sendKeys("secret");
+        driver.findElement(By.xpath("//input[@value=\'Login\']")).click();
     }
 
     public LoginHelper session () {
