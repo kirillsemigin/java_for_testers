@@ -3,12 +3,10 @@ package manager;
 import model.GroupData;
 import org.openqa.selenium.By;
 
-public class GroupHelper {
-
-    private final ApplicationManager manager;
+public class GroupHelper extends HelperBase {
 
     public GroupHelper(ApplicationManager manager) {
-        this.manager = manager;
+        super(manager);
 
     }
 
@@ -76,12 +74,6 @@ public class GroupHelper {
 
     }
 
-    private void type(By locator, String text) {
-        click(locator);
-        manager.driver.findElement(locator).clear();
-        manager.driver.findElement(locator).sendKeys(text);
-    }
-
     private void initGroupModification() {
         click(By.name("edit"));
     }
@@ -91,7 +83,4 @@ public class GroupHelper {
 
     }
 
-    private void click(By locator) {
-        manager.driver.findElement(locator).click();
-    }
 }
