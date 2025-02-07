@@ -12,7 +12,7 @@ public class TestBase {
         if (app == null) { // инициализация переменной app
             app = new ApplicationManager();
         }
-        app.init(System.getProperty("browser", "Chrome")); // метод инициализации (переход по адресу, ввод логина и пароля)
+        app.init(System.getProperty("browser", "Firefox")); // метод инициализации (переход по адресу, ввод логина и пароля)
     }
 
 }
