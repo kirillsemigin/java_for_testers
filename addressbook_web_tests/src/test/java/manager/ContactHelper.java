@@ -16,6 +16,20 @@ public class ContactHelper extends HelperBase {
         returnToMainPage();
     }
 
+    public void deleteContact() {
+        selectContact();
+        submitContactRemoval();
+    }
+
+
+    private void selectContact() {
+        click(By.name("selected[]"));
+    }
+
+    private void submitContactRemoval() {
+        click(By.xpath("//input[@value=\'Delete\']"));
+    }
+
     private void fillContactForm(ContactData contact) {
         type(By.name("firstname"), contact.firstname());
         type(By.name("middlename"), contact.middlename());
