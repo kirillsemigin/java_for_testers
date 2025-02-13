@@ -8,6 +8,11 @@ public class ContactHelper extends HelperBase {
     public ContactHelper (ApplicationManager manager) {
         super(manager);
     }
+
+    public boolean isContactPresent() { // проверяем наличие контакта
+        return manager.isElementPresent(By.name("selected[]"));
+
+    }
     
     public void createContact(ContactData contacts) {
         initContactCreation();
