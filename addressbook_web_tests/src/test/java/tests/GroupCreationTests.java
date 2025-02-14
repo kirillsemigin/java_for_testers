@@ -4,40 +4,33 @@ import model.GroupData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GroupCreationTests extends TestBase {
 
 
+    public static List<GroupData> groupProvider() {
+        var result = new ArrayList<GroupData>(List.of(
+                new GroupData(),
+                new GroupData().withName("some name"),
+                new GroupData("group name", "", ""),
+                new GroupData("group name'", "", "")));
+        for (int i = 0; i < 5; i ++) { // цикл, где i это счетчик, n заданное количество групп.
+            result.add(new GroupData(randomString(i * 10), randomString(i * 10), randomString(i * 10)));
+        }
+        return result;
+    }
+    
+
     @ParameterizedTest
-    @ValueSource(strings = {"group name", "group name'"})
-    public void CanCreateGroup(String name) {
+    @MethodSource("groupProvider")
+    public void CanCreateMultipleGroups(GroupData group) {
         int groupCount = app.groups().getCount(); // подсчет количества групп до операции добавления
-        app.groups().createGroup(new GroupData(name, "group header", "group footer"));
+        app.groups().createGroup(group);
         int newGroupCount = app.groups().getCount(); // подсчет количества групп после операции добавления
         Assertions.assertEquals(groupCount + 1, newGroupCount);
-    }
-
-    @Test
-    public void CanCreateGroupWithEmptyName() {
-        app.groups().createGroup(new GroupData());
-    }
-
-    @Test
-    public void CanCreateGroupWithNameOnly() {
-        app.groups().createGroup(new GroupData().withName("some name"));
-    }
-
-    @Test
-    public void CanCreateMultipleGroups() {
-        int n = 5; // заданное количество групп
-        int groupCount = app.groups().getCount(); // подсчет количества групп до операции добавления
-
-        for (int i = 0; i < n; i ++) { // цикл, где i это счетчик, n заданное количество групп.
-            app.groups().createGroup(new GroupData(randomString(i * 10), "group header", "group footer"));
-        }
-
-        int newGroupCount = app.groups().getCount(); // подсчет количества групп после операции добавления
-        Assertions.assertEquals(groupCount + n, newGroupCount);
     }
 }

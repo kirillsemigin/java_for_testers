@@ -17,15 +17,13 @@ public class TestBase {
         app.init(System.getProperty("browser", "Chrome")); // метод инициализации (переход по адресу, ввод логина и пароля)
     }
 
-    public String randomString(int n) { // генерация случайных символов
+    public static String randomString(int n) { // генерация случайных символов
         var rnd = new Random();
         var result = "";
         for (int i = 0; i < n; i ++) {
             result = result + (char)('a' + rnd.nextInt(26));
 
         }
-        if (n < 20)
-            result = result + '\'';
         return result;
     }
 }
