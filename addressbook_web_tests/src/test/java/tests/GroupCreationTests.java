@@ -14,16 +14,21 @@ public class GroupCreationTests extends TestBase {
 
     public static List<GroupData> groupProvider() {
         var result = new ArrayList<GroupData>(List.of(
-                new GroupData(),
-                new GroupData().withName("some name"),
-                new GroupData("group name", "", ""),
                 new GroupData("group name'", "", "")));
+        for (var name : List.of("", "group name")) {
+            for (var header : List.of("", "group header")) {
+                for (var footer : List.of("", "group footer")) {
+                    result.add(new GroupData(name, header, footer));
+                }
+            }
+
+        }
         for (int i = 0; i < 5; i ++) { // цикл, где i это счетчик, n заданное количество групп.
             result.add(new GroupData(randomString(i * 10), randomString(i * 10), randomString(i * 10)));
         }
         return result;
     }
-    
+
 
     @ParameterizedTest
     @MethodSource("groupProvider")
