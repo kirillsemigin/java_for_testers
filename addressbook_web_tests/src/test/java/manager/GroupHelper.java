@@ -32,7 +32,6 @@ public class GroupHelper extends HelperBase {
     public void removeGroup() {
         openGroupsPage();
         selectGroup();
-        selectGroup();
         removeSelectedGroup();
         returnToGroupsPage();
     }
@@ -83,7 +82,7 @@ public class GroupHelper extends HelperBase {
 
     }
 
-    public int getCount() {
+    public int getCount() { // подсчет количества групп (по чекбоксу)
         openGroupsPage();
         return manager.driver.findElements(By.name("selected[]")).size();
     }

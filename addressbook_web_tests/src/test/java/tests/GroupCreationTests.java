@@ -9,9 +9,9 @@ public class GroupCreationTests extends TestBase {
 
     @Test
     public void CanCreateGroup() {
-        int groupCount = app.groups().getCount();
+        int groupCount = app.groups().getCount(); // подсчет количества групп до операции добавления
         app.groups().createGroup(new GroupData("group name", "group header", "group footer"));
-        int newGroupCount = app.groups().getCount();
+        int newGroupCount = app.groups().getCount(); // подсчет количества групп после операции добавления
         Assertions.assertEquals(groupCount + 1, newGroupCount);
     }
 
