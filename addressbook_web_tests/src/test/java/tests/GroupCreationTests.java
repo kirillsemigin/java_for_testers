@@ -24,4 +24,17 @@ public class GroupCreationTests extends TestBase {
     public void CanCreateGroupWithNameOnly() {
         app.groups().createGroup(new GroupData().withName("some name"));
     }
+
+    @Test
+    public void CanCreateMultipleGroups() {
+        int n = 5;
+        int groupCount = app.groups().getCount(); // подсчет количества групп до операции добавления
+
+        for (int i = 0; i < n; i ++) { // цикл, где i это счетчик
+            app.groups().createGroup(new GroupData("group name", "group header", "group footer"));
+        }
+
+        int newGroupCount = app.groups().getCount(); // подсчет количества групп после операции добавления
+        Assertions.assertEquals(groupCount + n, newGroupCount);
+    }
 }
