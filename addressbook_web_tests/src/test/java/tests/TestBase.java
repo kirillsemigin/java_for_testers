@@ -3,6 +3,8 @@ package tests;
 import manager.ApplicationManager;
 import org.junit.jupiter.api.BeforeEach;
 
+import java.util.Random;
+
 public class TestBase {
 
     protected static ApplicationManager app; // ссылка на manager.ApplicationManager
@@ -13,6 +15,17 @@ public class TestBase {
             app = new ApplicationManager();
         }
         app.init(System.getProperty("browser", "Chrome")); // метод инициализации (переход по адресу, ввод логина и пароля)
+    }
+
+    public String randomString(int n) { // генерация случайных символов
+        var rnd = new Random();
+        var result = "";
+        for (int i = 0; i < n; i ++) {
+            result = result + (char)('a' + rnd.nextInt(26));
+
+        }
+        return result;
+
     }
 
 }

@@ -27,11 +27,11 @@ public class GroupCreationTests extends TestBase {
 
     @Test
     public void CanCreateMultipleGroups() {
-        int n = 5;
+        int n = 5; // заданное количество групп
         int groupCount = app.groups().getCount(); // подсчет количества групп до операции добавления
 
-        for (int i = 0; i < n; i ++) { // цикл, где i это счетчик
-            app.groups().createGroup(new GroupData("group name", "group header", "group footer"));
+        for (int i = 0; i < n; i ++) { // цикл, где i это счетчик, n заданное количество групп.
+            app.groups().createGroup(new GroupData(randomString(i * 10), "group header", "group footer"));
         }
 
         int newGroupCount = app.groups().getCount(); // подсчет количества групп после операции добавления
