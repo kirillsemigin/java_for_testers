@@ -3,14 +3,17 @@ package tests;
 import model.GroupData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class GroupCreationTests extends TestBase {
 
 
-    @Test
-    public void CanCreateGroup() {
+    @ParameterizedTest
+    @ValueSource(strings = {"group name", "group name'"})
+    public void CanCreateGroup(String name) {
         int groupCount = app.groups().getCount(); // подсчет количества групп до операции добавления
-        app.groups().createGroup(new GroupData("group name", "group header", "group footer"));
+        app.groups().createGroup(new GroupData(name, "group header", "group footer"));
         int newGroupCount = app.groups().getCount(); // подсчет количества групп после операции добавления
         Assertions.assertEquals(groupCount + 1, newGroupCount);
     }
