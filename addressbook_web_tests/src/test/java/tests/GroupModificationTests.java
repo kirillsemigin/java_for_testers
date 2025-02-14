@@ -7,7 +7,7 @@ public class GroupModificationTests extends TestBase {
 
     @Test
     void canModifyGroup() {
-        if (!app.groups().isGroupPresent()) { //создание группы в том случае если ни одной группы не найдено
+        if (app.groups().getCount() == 0) { //создание группы в том случае если ни одной группы не найдено
             app.groups().createGroup(new GroupData("group name", "group header", "group footer"));
 
         }
