@@ -79,5 +79,9 @@ public class ContactHelper extends HelperBase {
 
     }
 
+    public int contactCount() { // подсчет количества контактов
+        return manager.driver.findElements(By.name("selected[]")).size();
+    }
+
 
 }
