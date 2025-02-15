@@ -66,5 +66,18 @@ public class ContactHelper extends HelperBase {
         click(By.linkText("home page"));
     }
 
+    private void selectAllContacts() { // метод выбора всех контактов
+        var checkboxes = manager.driver.findElements(By.name("selected[]"));
+        for (var checkbox : checkboxes) {
+            checkbox.click();
+        }
+    }
+
+    public void deleteAllContacts() {// метод удаления всех контактов
+        selectAllContacts();
+        submitContactRemoval();
+
+    }
+
 
 }
