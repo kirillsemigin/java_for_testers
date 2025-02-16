@@ -24,6 +24,7 @@ public class ContactHelper extends HelperBase {
     public void deleteContact() {
         selectContact();
         submitContactRemoval();
+        openHomePage();
     }
 
 
@@ -55,6 +56,15 @@ public class ContactHelper extends HelperBase {
        */
 
     }
+
+    private void switchToAlert() {
+        manager.driver.switchTo().alert().accept();
+    }
+
+    public void openHomePage() {
+            manager.driver.get("http://localhost/addressbook/");
+    }
+
 
     private void initContactCreation() {
         click(By.linkText("add new"));

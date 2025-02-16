@@ -17,7 +17,7 @@ public class DeleteContactTest extends TestBase {
         int contactCount = app.contacts().contactCount();
         app.contacts().deleteContact();
         int newContactCount = app.contacts().contactCount();
-        Assertions.assertEquals(contactCount - 1, newContactCount);
+        Assertions.assertEquals(contactCount -1, newContactCount);
 
     }
 
