@@ -17,22 +17,14 @@ public class CreateContactTest extends TestBase {
             for (var middlename : List.of("", "test middlename")) {
                 for (var lastname : List.of("", "test last name")) {
                     for (var nickname : List.of("", "test nickname")) {
-                        result.add(new ContactData()
-                                .withNameOnly(firstname)
-                                .withMiddleNameOnly(middlename)
-                                .withLastNameOnly(lastname)
-                                .withNickNameOnly(nickname));
+                        result.add(new ContactData(firstname, middlename, lastname, nickname));
                     }
                 }
             }
         }
 
         for (int i = 0; i < 2; i++) {
-            result.add(new ContactData()
-                    .withNameOnly(randomString(i * 5))
-                    .withMiddleNameOnly(randomString(i * 5))
-                    .withLastNameOnly(randomString(i * 5))
-                    .withNickNameOnly(randomString(i * 5)));
+            result.add(new ContactData(randomString(i * 2), randomString(i * 2), randomString(i * 2), randomString(i * 2)));
         }
         return result;
     }
