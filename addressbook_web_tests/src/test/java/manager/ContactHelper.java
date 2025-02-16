@@ -13,6 +13,10 @@ public class ContactHelper extends HelperBase {
         return manager.isElementPresent(By.name("selected[]"));
 
     }
+
+    public void openHomePage() {
+        manager.driver.get("http://localhost/addressbook/");
+    }
     
     public void createContact(ContactData contacts) {
         initContactCreation();
@@ -61,11 +65,6 @@ public class ContactHelper extends HelperBase {
         manager.driver.switchTo().alert().accept();
     }
 
-    public void openHomePage() {
-            manager.driver.get("http://localhost/addressbook/");
-    }
-
-
     private void initContactCreation() {
         click(By.linkText("add new"));
     }
@@ -84,12 +83,23 @@ public class ContactHelper extends HelperBase {
             checkbox.click();
         }
     }
+    
 
     public void deleteAllContacts() {// метод удаления всех контактов
         selectAllContacts();
         submitContactRemoval();
-
     }
+
+    public void deleteAllContactsAtOnce() {
+        selectContactsBySelectAllButton();
+        submitContactRemoval();
+    }
+
+    public void selectContactsBySelectAllButton() {
+        manager.driver.findElement(By.id("MassCB")).click();
+    }
+
+
 
     public int contactCount() { // подсчет количества контактов
         return manager.driver.findElements(By.name("selected[]")).size();
