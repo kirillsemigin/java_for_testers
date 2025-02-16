@@ -17,6 +17,7 @@ public class CreateContactTest extends TestBase {
             for (var middlename : List.of("", "test middlename")) {
                 for (var lastname : List.of("", "test last name")) {
                     for (var nickname : List.of("", "test nickname")) {
+<<<<<<< HEAD
                         for (var title : List.of("", "test title")) {
                             for (var company : List.of("", "test company")) {
                                 for (var address : List.of("", "test address")) {
@@ -56,17 +57,24 @@ public class CreateContactTest extends TestBase {
                                 }
                             }
                         }
+=======
+                        result.add(new ContactData(firstname, middlename, lastname, nickname));
+>>>>>>> parent of ab77348 (доработка кода)
                     }
                 }
             }
         }
         for (int i = 0; i < 2; i++) {
+<<<<<<< HEAD
             result.add(new ContactData(
                     randomString(i * 2), randomString(i * 2), randomString(i * 2),
                     randomString(i * 2), randomString(i * 2), randomString(i * 2),
                     randomString(i * 2), randomString(i * 2), randomString(i * 2),
                     randomString(i * 2), randomString(i * 2), randomString(i * 2),
                     randomString(i * 2), randomString(i * 2), randomString(i * 2)));
+=======
+            result.add(new ContactData(randomString(i * 2), randomString(i * 2), randomString(i * 2), randomString(i * 2)));
+>>>>>>> parent of ab77348 (доработка кода)
         }
         return result;
     }
