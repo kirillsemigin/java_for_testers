@@ -40,7 +40,7 @@ public class ContactHelper extends HelperBase {
         type(By.name("middlename"), contact.middlename());
         type(By.name("lastname"), contact.lastname());
         type(By.name("nickname"), contact.nickname());
-        type(By.name("title"), contact.title());
+      /*  type(By.name("title"), contact.title());
         type(By.name("company"), contact.company());
         type(By.name("address"), contact.address());
         type(By.name("home"), contact.home());
@@ -51,6 +51,8 @@ public class ContactHelper extends HelperBase {
         type(By.name("email2"), contact.email2());
         type(By.name("email3"), contact.email3());
         type(By.name("homepage"), contact.homepage());
+
+       */
 
     }
 
