@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 
 public class ContactHelper extends HelperBase {
 
-    public ContactHelper (ApplicationManager manager) {
+    public ContactHelper(ApplicationManager manager) {
         super(manager);
     }
 
@@ -17,7 +17,7 @@ public class ContactHelper extends HelperBase {
     public void openHomePage() {
         manager.driver.get("http://localhost/addressbook/");
     }
-    
+
     public void createContact(ContactData contacts) {
         initContactCreation();
         fillContactForm(contacts);
@@ -83,7 +83,7 @@ public class ContactHelper extends HelperBase {
             checkbox.click();
         }
     }
-    
+
 
     public void deleteAllContacts() {// метод удаления всех контактов
         selectAllContacts();
@@ -98,7 +98,6 @@ public class ContactHelper extends HelperBase {
     public void selectContactsBySelectAllButton() {
         manager.driver.findElement(By.id("MassCB")).click();
     }
-
 
 
     public int contactCount() { // подсчет количества контактов
