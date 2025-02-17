@@ -4,7 +4,6 @@ import model.ContactData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,11 +16,6 @@ public class CreateContactTest extends TestBase {
             for (var middlename : List.of("", "test middlename")) {
                 for (var lastname : List.of("", "test last name")) {
                     for (var nickname : List.of("", "test nickname")) {
-                        result.add(new ContactData(
-                                firstname,
-                                middlename,
-                                lastname,
-                                nickname));
                         result.add(new ContactData(firstname, middlename, lastname, nickname));
                     }
                 }
@@ -32,9 +26,10 @@ public class CreateContactTest extends TestBase {
         }
         return result;
     }
+
     @ParameterizedTest
     @MethodSource("contactProvider")
-    public void createContact (ContactData contact){
+    public void createContact(ContactData contact) {
         int ContactCount = app.contacts().contactCount();
         app.contacts().createContact(contact);
         int newContactCount = app.contacts().contactCount();
