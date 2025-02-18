@@ -1,7 +1,11 @@
 package manager;
 
 import model.ContactData;
+import model.GroupData;
 import org.openqa.selenium.By;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactHelper extends HelperBase {
 
@@ -25,15 +29,16 @@ public class ContactHelper extends HelperBase {
         returnToMainPage();
     }
 
-    public void deleteContact() {
-        selectContact();
+    public void deleteContact(ContactData contact) {
+        selectContact(contact);
         submitContactRemoval();
         openHomePage();
     }
 
 
-    private void selectContact() {
-        click(By.name("selected[]"));
+    private void selectContact(ContactData contact) {
+        click(By.cssSelector(String.format("input[value='%s']", contact.id())));
+      //  click(By.name("selected[]"));
     }
 
     private void submitContactRemoval() {
@@ -105,4 +110,17 @@ public class ContactHelper extends HelperBase {
     }
 
 
+    public List<ContactData> getList() {
+        var contacts = new ArrayList<ContactData>();
+        var tds = manager.driver.findElements(By.name("entry"));
+        for (var td : tds) {
+            var name = td.findElement(By.cssSelector("td:nth-child(3)")).getText();
+            var lastname = td.findElement(By.cssSelector("td:nth-child(2)")).getText();
+            var checkbox = td.findElement(By.name("selected[]"));
+            var id = checkbox.getAttribute("value");
+            contacts.add(new ContactData().withId(id).withName(name).withLastName(lastname));
+
+        }
+        return contacts;
+    }
 }
