@@ -123,4 +123,23 @@ public class ContactHelper extends HelperBase {
         }
         return contacts;
     }
+
+    public void pushEditButton() {
+        click(By.cssSelector("td:nth-child(8)"));
+    }
+
+    public void pushUpdateButton() {
+        click(By.name("update"));
+    }
+
+    public void modifyContact(ContactData contact, ContactData modifiedContact) {
+        selectContact(contact);
+        pushEditButton();
+        fillContactForm(modifiedContact);
+        pushUpdateButton();
+        returnToMainPage();
+
+
+
+    }
 }
