@@ -3,6 +3,7 @@ package tests;
 import model.ContactData;
 import model.GroupData;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import java.util.ArrayList;
@@ -11,6 +12,17 @@ import java.util.List;
 
 public class CreateContactTest extends TestBase {
 
+
+    @Test
+    public void createOneUser() {
+        var user = new ContactData()
+                .withName("another name")
+                .withLastName("another lastname")
+                .withPhoto("src/test/resources/images/avatar.png");
+        app.contacts().createContact(user);
+
+
+    }
 
     public static List<ContactData> contactProvider() {
         var result = new ArrayList<ContactData>();
@@ -35,7 +47,7 @@ public class CreateContactTest extends TestBase {
 
     @ParameterizedTest
     @MethodSource("contactProvider")
-    public void createContact(ContactData contact) {
+    public void createMultipleContacts(ContactData contact) {
         var oldContacts = app.contacts().getList();
         app.contacts().createContact(contact);
         var newContacts = app.contacts().getList();
