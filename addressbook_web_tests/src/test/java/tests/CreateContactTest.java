@@ -1,7 +1,7 @@
 package tests;
 
+import common.CommonFunctions;
 import model.ContactData;
-import model.GroupData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -16,8 +16,8 @@ public class CreateContactTest extends TestBase {
     @Test
     public void createOneUser() {
         var user = new ContactData()
-                .withName(randomString(10))
-                .withLastName(randomString(10))
+                .withName(CommonFunctions.randomString(10))
+                .withLastName(CommonFunctions.randomString(10))
                 .withPhoto(randomFile("src/test/resources/images"));
         app.contacts().createContact(user);
 
@@ -37,10 +37,10 @@ public class CreateContactTest extends TestBase {
         }
         for (int i = 0; i < 2; i++) {
             result.add(new ContactData()
-                    .withName(randomString(i * 2))
-                    .withMiddleName(randomString(i * 2))
-                    .withLastName(randomString(i * 2))
-                    .withNickName(randomString(i * 2)));
+                    .withName(CommonFunctions.randomString(i * 2))
+                    .withMiddleName(CommonFunctions.randomString(i * 2))
+                    .withLastName(CommonFunctions.randomString(i * 2))
+                    .withNickName(CommonFunctions.randomString(i * 2)));
         }
         return result;
     }
@@ -56,7 +56,7 @@ public class CreateContactTest extends TestBase {
         };
         newContacts.sort(compareById);
         var expectedList = new ArrayList<>(oldContacts);
-        expectedList.add(contact.withId(newContacts.get(newContacts.size() -1 ).id()).withMiddleName("").withNickName(""));
+        expectedList.add(contact.withId(newContacts.get(newContacts.size() -1 ).id()).withMiddleName("").withNickName("").withPhoto(""));
         expectedList.sort(compareById);
         Assertions.assertEquals(newContacts, expectedList);
 
