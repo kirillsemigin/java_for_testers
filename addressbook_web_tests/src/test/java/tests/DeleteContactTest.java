@@ -31,7 +31,7 @@ public class DeleteContactTest extends TestBase {
 
     @Test
     void DeleteAllContactsAtOnceOneByOne() { // удаляем все контакты за раз
-        if (app.contacts().contactCount() == 0) { // проверка наличия контакта перед удалением. Если контакта нет - создаем его.
+        if (app.contacts().contactCount() == 0) { // Проверка наличия контакта перед удалением. Если контакта нет - создаем его.
             app.contacts().createContact(new ContactData("", "firstname", "middlename", "lastname", "nickname", ""));
         }
         app.contacts().deleteAllContacts();
@@ -41,7 +41,7 @@ public class DeleteContactTest extends TestBase {
 
     @Test
     void DeleteAllContactsAtOnceBySelectAllButton() { // удаляем все контакты за раз
-        if (app.contacts().contactCount() == 0) { // проверка наличия контакта перед удалением. Если контакта нет - создаем его.
+        if (app.contacts().contactCount() == 0) { // Проверка наличия контакта перед удалением. Если контакта нет - создаем его.
             app.contacts().createContact(new ContactData("", "firstname", "middlename", "lastname", "nickname", ""));
         }
         app.contacts().deleteAllContactsAtOnce();

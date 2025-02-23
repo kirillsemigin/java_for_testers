@@ -16,9 +16,9 @@ public class CreateContactTest extends TestBase {
     @Test
     public void createOneUser() {
         var user = new ContactData()
-                .withName("another name")
-                .withLastName("another lastname")
-                .withPhoto("src/test/resources/images/avatar.png");
+                .withName(randomString(10))
+                .withLastName(randomString(10))
+                .withPhoto(randomFile("src/test/resources/images"));
         app.contacts().createContact(user);
 
 
