@@ -1,9 +1,7 @@
 package manager;
 
 import model.ContactData;
-import model.GroupData;
 import org.openqa.selenium.By;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +26,15 @@ public class ContactHelper extends HelperBase {
         submitContactCreation();
         returnToMainPage();
     }
+
+    public void createContactWithoutPhoto(ContactData contacts) {
+        initContactCreation();
+        fillContactFormWithoutPhoto(contacts);
+        submitContactCreation();
+        returnToMainPage();
+    }
+
+
 
     public void deleteContact(ContactData contact) {
         selectContact(contact);
@@ -66,6 +73,15 @@ public class ContactHelper extends HelperBase {
        */
 
     }
+
+    private void fillContactFormWithoutPhoto(ContactData contact) {
+        type(By.name("firstname"), contact.firstname());
+        type(By.name("middlename"), contact.middlename());
+        type(By.name("lastname"), contact.lastname());
+        type(By.name("nickname"), contact.nickname());
+    }
+
+
 
     private void switchToAlert() {
         manager.driver.switchTo().alert().accept();

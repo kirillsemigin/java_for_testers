@@ -49,14 +49,14 @@ public class CreateContactTest extends TestBase {
     @MethodSource("contactProvider")
     public void createMultipleContacts(ContactData contact) {
         var oldContacts = app.contacts().getList();
-        app.contacts().createContact(contact);
+        app.contacts().createContactWithoutPhoto(contact);
         var newContacts = app.contacts().getList();
         Comparator<ContactData> compareById = (o1, o2) -> {
             return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
         };
         newContacts.sort(compareById);
         var expectedList = new ArrayList<>(oldContacts);
-        expectedList.add(contact.withId(newContacts.get(newContacts.size() -1 ).id()).withMiddleName("").withNickName("").withPhoto(""));
+        expectedList.add(contact.withId(newContacts.get(newContacts.size() -1 ).id()).withMiddleName("").withNickName(""));
         expectedList.sort(compareById);
         Assertions.assertEquals(newContacts, expectedList);
 
