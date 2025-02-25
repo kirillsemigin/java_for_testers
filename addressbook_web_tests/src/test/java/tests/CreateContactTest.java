@@ -17,7 +17,8 @@ public class CreateContactTest extends TestBase {
     void canCreateOneContact() {
         var contact = new ContactData()
                 .withName(randomString(10))
-                .withLastName(randomString(10));
+                .withLastName(randomString(10))
+                .withPhoto("src/test/resources/images/avatar.png");
         app.contacts().createContact(contact);
     }
 
@@ -47,7 +48,7 @@ public class CreateContactTest extends TestBase {
     @MethodSource("contactProvider")
     public void createContact(ContactData contact) {
         var oldContacts = app.contacts().getList();
-        app.contacts().createContact(contact);
+        app.contacts().createContactWithoutPhoto(contact);
         var newContacts = app.contacts().getList();
         Comparator<ContactData> compareById = (o1, o2) -> {
             return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));

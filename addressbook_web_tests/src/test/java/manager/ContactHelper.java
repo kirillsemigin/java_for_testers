@@ -29,6 +29,13 @@ public class ContactHelper extends HelperBase {
         returnToMainPage();
     }
 
+    public void createContactWithoutPhoto(ContactData contacts) {
+        initContactCreation();
+        fillContactFormWithOutPhoto(contacts);
+        submitContactCreation();
+        returnToMainPage();
+    }
+
     public void deleteContact(ContactData contact) {
         selectContact(contact);
         submitContactRemoval();
@@ -50,6 +57,8 @@ public class ContactHelper extends HelperBase {
         type(By.name("middlename"), contact.middlename());
         type(By.name("lastname"), contact.lastname());
         type(By.name("nickname"), contact.nickname());
+        attach(By.name("photo"),contact.photo());
+
       /*  type(By.name("title"), contact.title());
         type(By.name("company"), contact.company());
         type(By.name("address"), contact.address());
@@ -64,6 +73,13 @@ public class ContactHelper extends HelperBase {
 
        */
 
+    }
+
+    private void fillContactFormWithOutPhoto(ContactData contact) {
+        type(By.name("firstname"), contact.firstname());
+        type(By.name("middlename"), contact.middlename());
+        type(By.name("lastname"), contact.lastname());
+        type(By.name("nickname"), contact.nickname());
     }
 
     private void switchToAlert() {
