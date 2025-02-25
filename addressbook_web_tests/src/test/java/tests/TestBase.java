@@ -4,11 +4,7 @@ import manager.ApplicationManager;
 import org.junit.jupiter.api.BeforeEach;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.Properties;
 import java.util.Random;
 
 public class TestBase {
@@ -16,13 +12,11 @@ public class TestBase {
     protected static ApplicationManager app; // ссылка на manager.ApplicationManager
 
     @BeforeEach
-    public void setUp() throws IOException {
+    public void setUp() {
         if (app == null) { // инициализация переменной app
-            var properties = new Properties();
-            properties.load(new FileReader(System.getProperty("target", "local.properties")));
             app = new ApplicationManager();
-            app.init(System.getProperty("browser", "Chrome"), properties); // метод инициализации (переход по адресу, ввод логина и пароля)
         }
+        app.init(System.getProperty("browser", "Chrome")); // метод инициализации (переход по адресу, ввод логина и пароля)
     }
 
     public static String randomFile(String dir) {
