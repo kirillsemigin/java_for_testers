@@ -19,16 +19,6 @@ public class TestBase {
         app.init(System.getProperty("browser", "Chrome")); // метод инициализации (переход по адресу, ввод логина и пароля)
     }
 
-    public static String randomString(int n) { // генерация случайных символов
-        var rnd = new Random();
-        var result = "";
-        for (int i = 0; i < n; i ++) {
-            result = result + (char)('a' + rnd.nextInt(26));
-
-        }
-        return result;
-    }
-
     public static String randomFile(String dir) {
         var fileNames = new File(dir).list();
         var rnd = new Random();
