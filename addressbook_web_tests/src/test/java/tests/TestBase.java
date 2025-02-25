@@ -19,6 +19,16 @@ public class TestBase {
         app.init(System.getProperty("browser", "Chrome")); // метод инициализации (переход по адресу, ввод логина и пароля)
     }
 
+    public static String randomString(int n) { // генерация случайных символов
+        var rnd = new Random();
+        var result = "";
+        for (int i = 0; i < n; i ++) {
+            result = result + (char)('a' + rnd.nextInt(26));
+
+        }
+        return result;
+    }
+
     public static String randomFile(String dir) {
         var fileNames = new File(dir).list(); // Создаем объект типа File и указываем в значении параметра путь к директории. Для получения списка файлов вызываем метод list
         var rnd = new Random(); // Для выбора случайного файла из списка.
