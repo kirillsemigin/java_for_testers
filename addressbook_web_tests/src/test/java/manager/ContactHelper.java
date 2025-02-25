@@ -151,7 +151,7 @@ public class ContactHelper extends HelperBase {
     public void modifyContact(ContactData contact, ContactData modifiedContact) {
         selectContact(contact);
         pushEditButton();
-        fillContactForm(modifiedContact);
+        fillContactFormWithOutPhoto(modifiedContact);
         pushUpdateButton();
         returnToMainPage();
 
