@@ -2,13 +2,9 @@ package generator;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import common.CommonFunctions;
 import model.GroupData;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class Generator {
@@ -25,7 +21,7 @@ public class Generator {
     @Parameter(names={"--count", "-c"})
     int count;
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         var generator = new Generator();
         JCommander.newBuilder()
                 .addObject(generator)
@@ -34,7 +30,7 @@ public class Generator {
         generator.run();
     }
 
-    private void run() throws IOException {
+    private void run() {
         var data = generate();
         save(data);
     }
@@ -65,13 +61,9 @@ public class Generator {
         return null;
     }
 
-    private void save(Object data) throws IOException {
-        if ("json".equals(format)) {
-            ObjectMapper mapper = new ObjectMapper();
-            mapper.enable(SerializationFeature.INDENT_OUTPUT);
-            mapper.writeValue(new File(output), data);
-        } else {
-            throw new IllegalArgumentException("Неизвестный формат данных" + format);
-        }
+    private void save(Object data) {
+
+
     }
+
 }
