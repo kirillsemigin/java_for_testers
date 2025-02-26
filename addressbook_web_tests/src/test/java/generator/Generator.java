@@ -6,12 +6,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import common.CommonFunctions;
 import model.GroupData;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-
 import static common.CommonFunctions.randomString;
 
 public class Generator {
@@ -42,7 +40,6 @@ public class Generator {
         save(data);
     }
 
-
     private Object generate() {
         if ("groups".equals(type)) {
             return generateGroups();
@@ -64,11 +61,9 @@ public class Generator {
         return result;
     }
 
-
     private Object generateContacts() {
         return null;
     }
-
 
     private void save(Object data) throws IOException {
         if ("json".equals(format)) {

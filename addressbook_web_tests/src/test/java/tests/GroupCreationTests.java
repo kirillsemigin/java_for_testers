@@ -30,7 +30,7 @@ public class GroupCreationTests extends TestBase {
 //                }
 //            }
 //        }
-        var json = "";
+        var json = ""; // Для построчного чтения файла
         try (var reader = new FileReader("groups.json");
              var breader = new BufferedReader(reader)
         ) {
@@ -41,7 +41,7 @@ public class GroupCreationTests extends TestBase {
            }
         }
 
-//        var json = Files.readString(Paths.get("groups.json"));
+//        var json = Files.readString(Paths.get("groups.json")); // Для чтения файла целиком
         ObjectMapper mapper = new ObjectMapper();
 
         var value = mapper.readValue(json, new TypeReference<List<GroupData>>() {});
