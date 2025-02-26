@@ -19,7 +19,6 @@ public class ContactHelper extends HelperBase {
     }
 
     public void openHomePage() {
-//    manager.driver.get("http://localhost/addressbook/");
         click(By.xpath("//*[@id=\"nav\"]/ul/li[1]/a"));
     }
 
