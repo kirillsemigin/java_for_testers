@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 import common.CommonFunctions;
+import model.ContactData;
 import model.GroupData;
 import java.io.File;
 import java.io.FileWriter;
@@ -63,7 +64,15 @@ public class Generator {
     }
 
     private Object generateContacts() {
-        return null;
+        var result = new ArrayList<ContactData>();
+        for (int i = 0; i < count; i ++) {
+            result.add(new ContactData()
+                    .withName(CommonFunctions.randomString(i * 2))
+                    .withMiddleName(CommonFunctions.randomString(i * 2))
+                    .withLastName(CommonFunctions.randomString(i * 2))
+                    .withNickName(CommonFunctions.randomString(i * 2)));
+        }
+        return result;
     }
 
     private void save(Object data) throws IOException {
