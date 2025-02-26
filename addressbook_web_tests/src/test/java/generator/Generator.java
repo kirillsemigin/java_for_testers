@@ -67,10 +67,10 @@ public class Generator {
         var result = new ArrayList<ContactData>();
         for (int i = 0; i < count; i ++) {
             result.add(new ContactData()
-                    .withName(CommonFunctions.randomString(i * 2))
-                    .withMiddleName(CommonFunctions.randomString(i * 2))
-                    .withLastName(CommonFunctions.randomString(i * 2))
-                    .withNickName(CommonFunctions.randomString(i * 2)));
+                    .withName(CommonFunctions.randomString(i * 5))
+                    .withMiddleName(CommonFunctions.randomString(i * 5))
+                    .withLastName(CommonFunctions.randomString(i * 5))
+                    .withNickName(CommonFunctions.randomString(i * 5)));
         }
         return result;
     }

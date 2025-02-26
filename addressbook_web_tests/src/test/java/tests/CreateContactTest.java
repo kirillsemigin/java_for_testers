@@ -1,11 +1,18 @@
 package tests;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import common.CommonFunctions;
 import model.ContactData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -23,24 +30,32 @@ public class CreateContactTest extends TestBase {
     }
 
 
-    public static List<ContactData> contactProvider() {
+    public static List<ContactData> contactProvider() throws JsonProcessingException {
         var result = new ArrayList<ContactData>();
-        for (var firstname : List.of("", "test name")) {
-            for (var middlename : List.of("", "test middlename")) {
-                for (var lastname : List.of("", "test last name")) {
-                    for (var nickname : List.of("", "test nickname")) {
-                        result.add(new ContactData().withName(firstname).withMiddleName(middlename).withLastName(lastname).withNickName(nickname));
-                    }
-                }
+ //              for (var firstname : List.of("", "test name")) {
+ //           for (var middlename : List.of("", "test middlename")) {
+ //               for (var lastname : List.of("", "test last name")) {
+ //                   for (var nickname : List.of("", "test nickname")) {
+//                        result.add(new ContactData().withName(firstname).withMiddleName(middlename).withLastName(lastname).withNickName(nickname));
+ //                   }
+//                }
+//            }
+//       }
+        var json = "";
+        try (var reader = new FileReader("contacts.json");
+             var breader = new BufferedReader(reader)
+        ) {
+            var line = breader.readLine();
+            while (line != null) {
+                json = json + line;
+                line = breader.readLine();
             }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-        for (int i = 0; i < 2; i++) {
-            result.add(new ContactData()
-                    .withName(CommonFunctions.randomString(i * 2))
-                    .withMiddleName(CommonFunctions.randomString(i * 2))
-                    .withLastName(CommonFunctions.randomString(i * 2))
-                    .withNickName(CommonFunctions.randomString(i * 2)));
-        }
+        ObjectMapper mapper = new ObjectMapper();
+        var value = mapper.readValue(json, new TypeReference<List<ContactData>>() {});
+        result.addAll(value);
         return result;
     }
 
