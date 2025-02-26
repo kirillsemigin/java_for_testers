@@ -49,7 +49,6 @@ public class GroupCreationTests extends TestBase {
         return result;
     }
 
-
     @ParameterizedTest
     @MethodSource("groupProvider")
     public void CanCreateMultipleGroups(GroupData group) {
@@ -69,14 +68,11 @@ public class GroupCreationTests extends TestBase {
 
     }
 
-
-
     public static List<GroupData> negativeGroupProvider() {
         var result = new ArrayList<GroupData>(List.of(
                 new GroupData("", "group name'", "", "")));
         return result;
     }
-
 
     @ParameterizedTest
     @MethodSource("negativeGroupProvider")
