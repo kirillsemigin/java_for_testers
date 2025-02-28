@@ -153,9 +153,7 @@ public class ContactHelper extends HelperBase {
         pushEditButton();
         fillContactFormWithOutPhoto(modifiedContact);
         pushUpdateButton();
-        returnToMainPage();
-
-
+        openHomePage();
 
     }
 }
