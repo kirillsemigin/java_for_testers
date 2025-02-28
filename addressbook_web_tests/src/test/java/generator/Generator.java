@@ -4,6 +4,7 @@ import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 import common.CommonFunctions;
 import model.ContactData;
@@ -16,16 +17,16 @@ import static common.CommonFunctions.randomString;
 
 public class Generator {
 
-    @Parameter(names={"--type", "-t"})
+    @Parameter(names = {"--type", "-t"})
     String type;
 
-    @Parameter(names={"--output", "-o"})
+    @Parameter(names = {"--output", "-o"})
     String output;
 
-    @Parameter(names={"--format", "-f"})
+    @Parameter(names = {"--format", "-f"})
     String format;
 
-    @Parameter(names={"--count", "-c"})
+    @Parameter(names = {"--count", "-c"})
     int count;
 
     public static void main(String[] args) throws IOException {
@@ -54,7 +55,7 @@ public class Generator {
 
     private Object generateGroups() {
         var result = new ArrayList<GroupData>();
-        for (int i = 0; i < count; i ++) {
+        for (int i = 0; i < count; i++) {
             result.add(new GroupData()
                     .withName(CommonFunctions.randomString(i * 10))
                     .withHeader(CommonFunctions.randomString(i * 10))
@@ -65,7 +66,7 @@ public class Generator {
 
     private Object generateContacts() {
         var result = new ArrayList<ContactData>();
-        for (int i = 0; i < count; i ++) {
+        for (int i = 0; i < count; i++) {
             result.add(new ContactData()
                     .withName(CommonFunctions.randomString(i * 5))
                     .withMiddleName(CommonFunctions.randomString(i * 5))
@@ -84,11 +85,17 @@ public class Generator {
             try (var writer = new FileWriter(output)) {
                 writer.write(json);
             }
-        } if ("yaml".equals(format)) {
+        } else if ("yaml".equals(format)) {
             var mapper = new YAMLMapper();
             mapper.writeValue(new File(output), data);
-        } else {
-            throw new IllegalArgumentException("Неизвесттный формат данных" + format);
+        } else if ("xml".equals(format)) {
+            var mapper = new XmlMapper();
+            mapper.writeValue(new File(output), data);
+        }
+        else {
+            throw new IllegalArgumentException("Неизвестный формат " + format);
         }
     }
 }
+
+
