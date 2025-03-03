@@ -3,7 +3,6 @@ package manager;
 import model.ContactData;
 import model.GroupData;
 import org.openqa.selenium.By;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,30 +21,34 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("//*[@id=\"nav\"]/ul/li[1]/a"));
     }
 
-    public void createContact(ContactData contacts) {
+    public void createContact(ContactData contacts) { // Create a user
         initContactCreation();
         fillContactForm(contacts);
         submitContactCreation();
         returnToMainPage();
     }
 
-    public void createContactWithoutPhoto(ContactData contacts) {
+    public void createContactWithoutPhoto(ContactData contacts) { // Create user without photo
         initContactCreation();
         fillContactFormWithOutPhoto(contacts);
         submitContactCreation();
         returnToMainPage();
     }
 
-    public void deleteContact(ContactData contact) {
+    public void deleteContact(ContactData contact) {  // Delete user
         selectContact(contact);
         submitContactRemoval();
         openHomePage();
     }
 
 
-    private void selectContact(ContactData contact) {
+    private void selectContact(ContactData contact) { 
         click(By.cssSelector(String.format("input[value='%s']", contact.id())));
       //  click(By.name("selected[]"));
+    }
+
+    private void selectContactToModify(ContactData contact) {// Выбираем контакт для изменения. Кликаем по иконке "карандаш"
+        click(By.xpath(String.format("//td[@class='center']/a[@href='edit.php?id=%s']", contact.id())));
     }
 
     private void submitContactRemoval() {
@@ -140,20 +143,14 @@ public class ContactHelper extends HelperBase {
         return contacts;
     }
 
-    public void pushEditButton() {
-        click(By.cssSelector("td:nth-child(8)"));
-    }
-
     public void pushUpdateButton() {
         click(By.name("update"));
     }
 
     public void modifyContact(ContactData contact, ContactData modifiedContact) {
-        selectContact(contact);
-        pushEditButton();
+        selectContactToModify(contact);
         fillContactFormWithOutPhoto(modifiedContact);
         pushUpdateButton();
         openHomePage();
-
     }
 }
