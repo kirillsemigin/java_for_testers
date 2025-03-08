@@ -62,15 +62,15 @@ public class CreateContactTest extends TestBase {
     @ParameterizedTest
     @MethodSource("contactProvider")
     public void createContact(ContactData contact) {
-        var oldContacts = app.contacts().getList();
+        var oldContacts = app.hbm().getContactList();
         app.contacts().createContactWithoutPhoto(contact);
-        var newContacts = app.contacts().getList();
+        var newContacts = app.hbm().getContactList();
         Comparator<ContactData> compareById = (o1, o2) -> {
             return Integer.compare(Integer.parseInt(o1.id()), Integer.parseInt(o2.id()));
         };
         newContacts.sort(compareById);
         var expectedList = new ArrayList<>(oldContacts);
-        expectedList.add(contact.withId(newContacts.get(newContacts.size() -1 ).id()).withMiddleName("").withNickName(""));
+        expectedList.add(contact.withId(newContacts.get(newContacts.size() -1 ).id()).withMiddleName("").withNickName("").withLastName("").withAddress(""));
         expectedList.sort(compareById);
         Assertions.assertEquals(newContacts, expectedList);
 

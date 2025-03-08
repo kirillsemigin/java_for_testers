@@ -15,14 +15,14 @@ public class DeleteContactTest extends TestBase {
 
     @Test
     public void DeleteContactTest() {
-        if (app.contacts().contactCount() == 0) { // Проверка наличия контакта перед удалением. Если контакта нет - создаем его.
-            app.contacts().createContactWithoutPhoto(new ContactData("", "firstname", "middlename", "lastname", "nickname",""));
+        if (app.hbm().getContactCount() == 0) { // Проверка наличия контакта перед удалением. Если контакта нет - создаем его.
+            app.hbm().createContact(new ContactData("", "firstname", "middlename", "lastname", "nickname","", "address"));
         }
-        List<ContactData> oldContacts = app.contacts().getList();
+        var oldContacts = app.hbm().getContactList();
         var rnd = new Random();
         var index = rnd.nextInt(oldContacts.size());
         app.contacts().deleteContact(oldContacts.get(index));
-        List<ContactData> newContacts = app.contacts().getList();
+        List<ContactData> newContacts = app.hbm().getContactList();
         var expectedList = new ArrayList<>(oldContacts);
         expectedList.remove(index);
         Assertions.assertEquals(newContacts, expectedList);
@@ -31,25 +31,21 @@ public class DeleteContactTest extends TestBase {
 
     @Test
     void DeleteAllContactsAtOnceOneByOne() { // удаляем все контакты за раз
-        if (app.contacts().contactCount() == 0) { // Проверка наличия контакта перед удалением. Если контакта нет - создаем его.
-            app.contacts().createContactWithoutPhoto(new ContactData("", "firstname", "middlename", "lastname", "nickname", ""));
+        if (app.hbm().getContactCount() == 0) { // Проверка наличия контакта перед удалением. Если контакта нет - создаем его.
+            app.hbm().createContact(new ContactData("", "firstname", "middlename", "lastname", "nickname", "", ""));
         }
         app.contacts().deleteAllContacts();
-        Assertions.assertEquals(0, app.contacts().contactCount());
+        Assertions.assertEquals(0, app.hbm().getContactCount());
 
     }
 
     @Test
     void DeleteAllContactsAtOnceBySelectAllButton() { // удаляем все контакты за раз
-        if (app.contacts().contactCount() == 0) { // Проверка наличия контакта перед удалением. Если контакта нет - создаем его.
-            app.contacts().createContactWithoutPhoto(new ContactData("", "firstname", "middlename", "lastname", "nickname", ""));
+        if (app.hbm().getContactCount() == 0) { // Проверка наличия контакта перед удалением. Если контакта нет - создаем его.
+            app.hbm().createContact(new ContactData("", "firstname", "middlename", "lastname", "nickname", "", ""));
         }
         app.contacts().deleteAllContactsAtOnce();
-        Assertions.assertEquals(0, app.contacts().contactCount());
+        Assertions.assertEquals(0, app.hbm().getContactCount());
 
     }
-
-
-
-
 }

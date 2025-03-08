@@ -36,6 +36,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void deleteContact(ContactData contact) {  // Delete user
+        openHomePage();
         selectContact(contact);
         submitContactRemoval();
         openHomePage();
@@ -110,11 +111,13 @@ public class ContactHelper extends HelperBase {
 
 
     public void deleteAllContacts() {// метод удаления всех контактов
+        openHomePage();
         selectAllContacts();
         submitContactRemoval();
     }
 
     public void deleteAllContactsAtOnce() {
+        openHomePage();
         selectContactsBySelectAllButton();
         submitContactRemoval();
     }

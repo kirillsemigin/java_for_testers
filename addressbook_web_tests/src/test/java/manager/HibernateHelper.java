@@ -1,6 +1,8 @@
 package manager;
 
+import manager.hbm.ContactRecord;
 import manager.hbm.GroupRecord;
+import model.ContactData;
 import model.GroupData;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AvailableSettings;
@@ -17,20 +19,20 @@ public class HibernateHelper extends HelperBase {
         super(manager);
         sessionFactory = new Configuration()
                 //.addAnnotatedClass(Book.class)
+                .addAnnotatedClass(ContactRecord.class)
                 .addAnnotatedClass(GroupRecord.class)
                 .setProperty(AvailableSettings.URL, "jdbc:mysql://localhost/addressbook")
                 .setProperty(AvailableSettings.USER, "root")
                 .setProperty(AvailableSettings.PASS, "")
                 .buildSessionFactory();
     }
-
+    // Groups
     static List<GroupData> convertList(List<GroupRecord> records) {
         List<GroupData> result = new ArrayList<>();
         for (var record : records) {
             result.add(convert(record));
         }
         return result;
-
     }
 
     private static GroupData convert(GroupRecord record) {
@@ -61,6 +63,51 @@ public class HibernateHelper extends HelperBase {
         sessionFactory.inSession(session -> {
             session.getTransaction().begin();
             session.persist(convert(groupData));
+            session.getTransaction().commit();
+        });
+    }
+    // Contacts
+    static List<ContactData> convertContactList(List<ContactRecord> records) {
+        List<ContactData> result = new ArrayList<>();
+        for (var record : records) {
+            result.add(convert(record));
+        }
+        return result;
+    }
+
+    private static ContactData convert(ContactRecord record) {
+        return new ContactData().withId("" + record.id)
+                .withName(record.firstname)
+                .withMiddleName(record.middlename)
+                .withLastName(record.lastname)
+                .withNickName(record.nickname)
+                .withAddress(record.address);
+    }
+
+    private static ContactRecord convert(ContactData data) {
+        var id = data.id();
+        if ("".equals(id)) {
+            id = "0";
+        }
+        return new ContactRecord(Integer.parseInt(id), data.firstname(), data.middlename(), data.lastname(), data.nickname(), data.address());
+    }
+
+    public List<ContactData> getContactList() {
+        return convertContactList(sessionFactory.fromSession(session -> {
+            return session.createQuery("from ContactRecord", ContactRecord.class).list();
+        }));
+    }
+
+    public long getContactCount() {
+        return (sessionFactory.fromSession(session -> {
+            return session.createQuery("select count (*) from ContactRecord", Long.class).getSingleResult();
+        }));
+    }
+
+    public void createContact(ContactData contactData) {
+        sessionFactory.inSession(session -> {
+            session.getTransaction().begin();
+            session.persist(convert(contactData));
             session.getTransaction().commit();
         });
     }
