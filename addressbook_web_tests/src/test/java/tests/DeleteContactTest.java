@@ -16,7 +16,7 @@ public class DeleteContactTest extends TestBase {
     @Test
     public void DeleteContactTest() {
         if (app.hbm().getContactCount() == 0) { // Проверка наличия контакта перед удалением. Если контакта нет - создаем его.
-            app.hbm().createContact(new ContactData("", "firstname", "middlename", "lastname", "nickname","", "address"));
+            app.hbm().createContact(new ContactData("", "firstname", "middlename", "lastname", "nickname",""));
         }
         var oldContacts = app.hbm().getContactList();
         var rnd = new Random();
@@ -32,7 +32,7 @@ public class DeleteContactTest extends TestBase {
     @Test
     void DeleteAllContactsAtOnceOneByOne() { // удаляем все контакты за раз
         if (app.hbm().getContactCount() == 0) { // Проверка наличия контакта перед удалением. Если контакта нет - создаем его.
-            app.hbm().createContact(new ContactData("", "firstname", "middlename", "lastname", "nickname", "", ""));
+            app.hbm().createContact(new ContactData("", "firstname", "middlename", "lastname", "nickname", ""));
         }
         app.contacts().deleteAllContacts();
         Assertions.assertEquals(0, app.hbm().getContactCount());
@@ -42,7 +42,7 @@ public class DeleteContactTest extends TestBase {
     @Test
     void DeleteAllContactsAtOnceBySelectAllButton() { // удаляем все контакты за раз
         if (app.hbm().getContactCount() == 0) { // Проверка наличия контакта перед удалением. Если контакта нет - создаем его.
-            app.hbm().createContact(new ContactData("", "firstname", "middlename", "lastname", "nickname", "", ""));
+            app.hbm().createContact(new ContactData("", "firstname", "middlename", "lastname", "nickname", ""));
         }
         app.contacts().deleteAllContactsAtOnce();
         Assertions.assertEquals(0, app.hbm().getContactCount());

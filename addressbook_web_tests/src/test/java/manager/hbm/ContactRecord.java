@@ -45,13 +45,12 @@ public class ContactRecord {
     public ContactRecord() {
     }
 
-    public ContactRecord(int id, String firstname, String middlename, String lastname, String nickname, String address) {
+    public ContactRecord(int id, String firstname, String middlename, String lastname, String nickname) {
 
         this.id = id;
         this.firstname = firstname;
         this.middlename = middlename;
         this.lastname = lastname;
         this.nickname = nickname;
-        this.address = address;
     }
 }

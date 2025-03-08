@@ -13,7 +13,7 @@ public class ContactModificationTest extends TestBase{
     @Test
     void canModifyContact() {
         if (app.contacts().contactCount() == 0) { // Проверка наличия контакта перед удалением. Если контакта нет - создаем его.
-            app.contacts().createContactWithoutPhoto(new ContactData("", "firstname", "middlename", "lastname", "nickname","", ""));
+            app.contacts().createContactWithoutPhoto(new ContactData("", "firstname", "middlename", "lastname", "nickname",""));
         }
         var oldContacts = app.contacts().getList();
         var rnd = new Random();
