@@ -84,6 +84,8 @@ public class ContactHelper extends HelperBase {
         type(By.name("middlename"), contact.middlename());
         type(By.name("lastname"), contact.lastname());
         type(By.name("nickname"), contact.nickname());
+        type(By.name("company"), contact.company());
+        type(By.name("address"), contact.address());
     }
 
     private void switchToAlert() {
@@ -151,6 +153,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void modifyContact(ContactData contact, ContactData modifiedContact) {
+        openHomePage();
         selectContactToModify(contact);
         fillContactFormWithOutPhoto(modifiedContact);
         pushUpdateButton();

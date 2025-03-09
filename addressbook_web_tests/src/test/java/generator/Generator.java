@@ -71,7 +71,9 @@ public class Generator {
                     .withName(CommonFunctions.randomString(i * 5))
                     .withMiddleName(CommonFunctions.randomString(i * 5))
                     .withLastName(CommonFunctions.randomString(i * 5))
-                    .withNickName(CommonFunctions.randomString(i * 5)));
+                    .withNickName(CommonFunctions.randomString(i * 5))
+                    .withCompany(CommonFunctions.randomString(i *5))
+                    .withAddress(CommonFunctions.randomString(i * 5)));
         }
         return result;
     }
