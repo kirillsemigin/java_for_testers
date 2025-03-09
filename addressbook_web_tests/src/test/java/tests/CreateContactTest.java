@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import common.CommonFunctions;
 import model.ContactData;
+import model.GroupData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -27,6 +28,24 @@ public class CreateContactTest extends TestBase {
                 .withPhoto(randomFile("src/test/resources/images"));
         app.contacts().createContact(contact);
     }
+
+    @Test
+    void CreateContactInGroup() {
+        var contact = new ContactData()
+                .withName(CommonFunctions.randomString(10))
+                .withLastName(CommonFunctions.randomString(10))
+                .withPhoto(randomFile("src/test/resources/images"));
+        if (app.hbm().getGroupCount() == 0) { //создание группы в том случае если ни одной группы не найдено
+            app.hbm().createGroup(new GroupData("", "group name", "group header", "group footer"));
+        }
+        var group = app.hbm().getGroupList().get(0);
+
+        var oldRelated = app.hbm().getContactsInGroup(group);
+        app.contacts().createContactInGroup(contact, group);
+        var newRelated = app.hbm().getContactsInGroup(group);
+        Assertions.assertEquals(oldRelated.size() + 1, newRelated.size());
+    }
+
 
 
     public static List<ContactData> contactProvider() throws JsonProcessingException {
@@ -58,6 +77,9 @@ public class CreateContactTest extends TestBase {
         return result;
     }
 
+
+
+
     @ParameterizedTest
     @MethodSource("contactProvider")
     public void createContact(ContactData contact) {
@@ -72,6 +94,5 @@ public class CreateContactTest extends TestBase {
         expectedList.add(contact.withId(newContacts.get(newContacts.size() -1 ).id()));
         expectedList.sort(compareById);
         Assertions.assertEquals(newContacts, expectedList);
-
     }
 }
