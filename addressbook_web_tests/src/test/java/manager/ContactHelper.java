@@ -39,6 +39,41 @@ public class ContactHelper extends HelperBase {
         returnToMainPage();
     }
 
+    public void addContactToGroup(ContactData contacts, GroupData group) {
+        openHomePage();
+        selectContact(contacts);
+        selectGroupToAdd(group);
+        PushAddButton();
+        openHomePage();
+    }
+
+    public void deleteContactFromGroup(ContactData contact, GroupData group) {
+        openHomePage();
+        selectGroupOnMainPage(group);
+        selectContact(contact);
+        pushRemoveButton();
+        openHomePage();
+    }
+
+    private void pushRemoveButton() {
+        click(By.name("remove"));
+    }
+
+    private void selectGroupToAdd(GroupData group) {
+        new Select(manager.driver.findElement(By.name("to_group"))).selectByValue(group.id());
+
+    }
+
+    private void selectGroupOnMainPage(GroupData group) {
+        new Select(manager.driver.findElement(By.name("group"))).selectByValue(group.id());
+
+    }
+
+    private void PushAddButton() {
+        click(By.name("add"));
+    }
+
+
     private void selectGroup(GroupData group) {
         new Select(manager.driver.findElement(By.name("new_group"))).selectByValue(group.id());
 
@@ -61,7 +96,7 @@ public class ContactHelper extends HelperBase {
 
     private void selectContact(ContactData contact) { 
         click(By.cssSelector(String.format("input[value='%s']", contact.id())));
-      //  click(By.name("selected[]"));
+
     }
 
     private void selectContactToModify(ContactData contact) {// Выбираем контакт для изменения. Кликаем по иконке "карандаш"

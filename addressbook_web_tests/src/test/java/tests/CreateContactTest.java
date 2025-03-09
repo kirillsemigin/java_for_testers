@@ -29,24 +29,6 @@ public class CreateContactTest extends TestBase {
         app.contacts().createContact(contact);
     }
 
-    @Test
-    void CreateContactInGroup() {
-        var contact = new ContactData()
-                .withName(CommonFunctions.randomString(10))
-                .withLastName(CommonFunctions.randomString(10))
-                .withPhoto(randomFile("src/test/resources/images"));
-        if (app.hbm().getGroupCount() == 0) { //создание группы в том случае если ни одной группы не найдено
-            app.hbm().createGroup(new GroupData("", "group name", "group header", "group footer"));
-        }
-        var group = app.hbm().getGroupList().get(0);
-
-        var oldRelated = app.hbm().getContactsInGroup(group);
-        app.contacts().createContactInGroup(contact, group);
-        var newRelated = app.hbm().getContactsInGroup(group);
-        Assertions.assertEquals(oldRelated.size() + 1, newRelated.size());
-    }
-
-
 
     public static List<ContactData> contactProvider() throws JsonProcessingException {
         var result = new ArrayList<ContactData>();
@@ -76,8 +58,6 @@ public class CreateContactTest extends TestBase {
         result.addAll(value);
         return result;
     }
-
-
 
 
     @ParameterizedTest

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
-public class ContractAndGroupRelationTest  extends TestBase {
+public class ContactAndGroupRelationTest extends TestBase {
 
     @Test
     void CreateContactInGroup() { // Создаем контакт и добавляем его в группу
@@ -39,9 +39,24 @@ public class ContractAndGroupRelationTest  extends TestBase {
         var contacts = app.hbm().getContactList();
         var rnd = new Random();
         var index = rnd.nextInt(contacts.size());
-        app.contacts().addContactInGroup(contacts.get(index), group);
-
-
+        app.contacts().addContactToGroup(contacts.get(index), group);
     }
+
+    @Test
+    void DeleteContactFromGroup() {
+        if (app.hbm().getContactCount() == 0) { // Проверяем есть ли контакт для добавления в группу. Если контакта нет - создаем его.
+            app.hbm().createContact(new ContactData("", "New Name", "New Middlename", "New Lastname", "New Nickname","", "","New Address"));
+        }
+        if (app.hbm().getGroupCount() == 0) { // Проверяем существует ли группа. Если группы нет - создаем ее.
+            app.hbm().createGroup(new GroupData("", "New group", "New header", "New footer"));
+        }
+        var group = app.hbm().getGroupList().get(0);
+        var contacts = app.hbm().getContactList();
+        var rnd = new Random();
+        var index = rnd.nextInt(contacts.size());
+        app.contacts().deleteContactFromGroup(contacts.get(index), group);
+    }
+
+
 
 }

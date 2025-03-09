@@ -15,9 +15,7 @@ public class DeleteContactTest extends TestBase {
 
     @Test
     public void DeleteContactTest() {
-        if (app.hbm().getContactCount() == 0) { // Проверка наличия контакта перед удалением. Если контакта нет - создаем его.
-            app.hbm().createContact(new ContactData("", "firstname", "middlename", "lastname", "nickname","", "","address"));
-        }
+
         var oldContacts = app.hbm().getContactList();
         var rnd = new Random();
         var index = rnd.nextInt(oldContacts.size());
