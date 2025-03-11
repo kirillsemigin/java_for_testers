@@ -35,11 +35,14 @@ public class ContactAndGroupRelationTest extends TestBase {
         if (app.hbm().getGroupCount() == 0) { // Проверяем существует ли группа. Если группы нет - создаем ее.
             app.hbm().createGroup(new GroupData("", "New group", "New header", "New footer"));
         }
-        var group = app.hbm().getGroupList().get(0);
+        var group = app.hbm().getGroupList();
+        var gr = new Random();
+        var group_index = gr.nextInt(group.size());
         var contacts = app.hbm().getContactList();
         var rnd = new Random();
         var index = rnd.nextInt(contacts.size());
-        app.contacts().addContactToGroup(contacts.get(index), group);
+        app.contacts().addContactToGroup(contacts.get(index), group.get(group_index));
+        Assertions.
     }
 
     @Test
@@ -50,11 +53,13 @@ public class ContactAndGroupRelationTest extends TestBase {
         if (app.hbm().getGroupCount() == 0) { // Проверяем существует ли группа. Если группы нет - создаем ее.
             app.hbm().createGroup(new GroupData("", "New group", "New header", "New footer"));
         }
-        var group = app.hbm().getGroupList().get(0);
+        var group = app.hbm().getGroupList();
+        var gr = new Random();
+        var group_index = gr.nextInt(group.size());
         var contacts = app.hbm().getContactList();
         var rnd = new Random();
         var index = rnd.nextInt(contacts.size());
-        app.contacts().deleteContactFromGroup(contacts.get(index), group);
+        app.contacts().deleteContactFromGroup(contacts.get(index), group.get(group_index));
     }
 
 
