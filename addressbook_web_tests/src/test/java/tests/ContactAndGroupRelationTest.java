@@ -42,7 +42,7 @@ public class ContactAndGroupRelationTest extends TestBase {
         var rnd = new Random();
         var index = rnd.nextInt(contacts.size());
         app.contacts().addContactToGroup(contacts.get(index), group.get(group_index));
-        Assertions.
+
     }
 
     @Test
