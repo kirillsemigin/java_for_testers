@@ -12,7 +12,6 @@ public class GroupHelper extends HelperBase {
 
     public GroupHelper(ApplicationManager manager) {
         super(manager);
-
     }
 
     public void openGroupsPage() {
@@ -54,7 +53,6 @@ public class GroupHelper extends HelperBase {
         click(By.name("submit"));
     }
 
-    
     private void initGroupCreation() {
         click(By.name("new"));
     }
@@ -75,7 +73,6 @@ public class GroupHelper extends HelperBase {
         type(By.name("group_name"), group.name());
         type(By.name("group_header"), group.header());
         type(By.name("group_footer"), group.footer());
-
     }
 
     private void initGroupModification() {
@@ -84,7 +81,6 @@ public class GroupHelper extends HelperBase {
 
     private void selectGroup(GroupData group) {
         click(By.cssSelector(String.format("input[value='%s']", group.id())));
-
     }
 
     public int getCount() { // подсчет количества групп (по чекбоксу)
