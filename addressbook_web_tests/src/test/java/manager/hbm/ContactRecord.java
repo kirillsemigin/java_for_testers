@@ -42,6 +42,8 @@ public class ContactRecord {
 
     public String homepage;
 
+    public String phone2;
+
     public ContactRecord() {
     }
 
@@ -54,5 +56,6 @@ public class ContactRecord {
         this.nickname = nickname;
         this.company = company;
         this.address = address;
+
     }
 }
