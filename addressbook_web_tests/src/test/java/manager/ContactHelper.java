@@ -234,10 +234,20 @@ public class ContactHelper extends HelperBase {
         List<WebElement> rows = manager.driver.findElements(By.name("entry"));
         for (WebElement row : rows) {
             var id = row.findElement(By.tagName("input")).getAttribute("id");
-            var email = row.findElements(By.tagName("td")).get(5).getText();
+            var email = row.findElements(By.tagName("td")).get(4).getText();
             result.put(id, email);
         }
         return result;
     }
 
+    public Map<String, String> getAddress() {
+        var result = new HashMap<String, String>();
+        List<WebElement> rows = manager.driver.findElements(By.name("entry"));
+        for (WebElement row : rows) {
+            var id = row.findElement(By.tagName("input")).getAttribute("id");
+            var address = row.findElements(By.tagName("td")).get(3).getText();
+            result.put(id, address);
+        }
+        return result;
+    }
 }
