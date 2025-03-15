@@ -30,7 +30,7 @@ public class ContactAndGroupRelationTest extends TestBase {
     @Test
     void AddContactToGroup() {
         if (app.hbm().getContactCount() == 0) { // Проверяем есть ли контакт для добавления в группу. Если контакта нет - создаем его.
-            app.hbm().createContact(new ContactData("New Name", "New Middlename", "New Lastname", "New Nickname", "", "", "New Address", "", "", "", "", ""));
+            app.hbm().createContact(new ContactData("New Name", "New Middlename", "New Lastname", "New Nickname", "", "", "New Address", "", "", "", "", "", "", "", ""));
         }
         if (app.hbm().getGroupCount() == 0) { // Проверяем существует ли группа. Если группы нет - создаем ее.
             app.hbm().createGroup(new GroupData("", "New group", "New header", "New footer"));
@@ -48,7 +48,7 @@ public class ContactAndGroupRelationTest extends TestBase {
     @Test
     void DeleteContactFromGroup() {
         if (app.hbm().getContactCount() == 0) { // Проверяем есть ли контакт для добавления в группу. Если контакта нет - создаем его.
-            app.hbm().createContact(new ContactData("New Name", "New Middlename", "New Lastname", "New Nickname", "", "", "New Address", "", "", "", "", ""));
+            app.hbm().createContact(new ContactData("New Name", "New Middlename", "New Lastname", "New Nickname", "", "", "New Address", "", "", "", "", "", "", "", ""));
         }
         if (app.hbm().getGroupCount() == 0) { // Проверяем существует ли группа. Если группы нет - создаем ее.
             app.hbm().createGroup(new GroupData("", "New group", "New header", "New footer"));

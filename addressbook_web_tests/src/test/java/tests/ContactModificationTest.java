@@ -12,7 +12,7 @@ public class ContactModificationTest extends TestBase{
     @Test
     void canModifyContact() {
         if (app.hbm().getContactCount() == 0) { // Проверка наличия контакта перед удалением. Если контакта нет - создаем его.
-            app.hbm().createContact(new ContactData("firstname", "middlename", "lastname", "nickname", "", "company", "address", "", "", "", "", ""));
+            app.hbm().createContact(new ContactData("firstname", "middlename", "lastname", "nickname", "", "company", "address", "", "", "", "", "", "", "", ""));
         }
         var oldContacts = app.hbm().getContactList();
         var rnd = new Random();

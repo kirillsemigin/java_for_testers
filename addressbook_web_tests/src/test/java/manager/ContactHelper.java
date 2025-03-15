@@ -227,6 +227,17 @@ public class ContactHelper extends HelperBase {
             result.put(id, phones);
         }
         return result;
-
     }
+
+    public Map<String, String> getEmail() {
+        var result = new HashMap<String, String>();
+        List<WebElement> rows = manager.driver.findElements(By.name("entry"));
+        for (WebElement row : rows) {
+            var id = row.findElement(By.tagName("input")).getAttribute("id");
+            var email = row.findElements(By.tagName("td")).get(5).getText();
+            result.put(id, email);
+        }
+        return result;
+    }
+
 }
