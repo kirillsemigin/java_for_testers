@@ -10,6 +10,9 @@ import java.util.stream.Stream;
 public class ContactInfoTests extends TestBase {
     @Test
     void testPhones() {
+        if (app.hbm().getContactCount() == 0) { // Проверка наличия контакта. Если контакта нет - создаем его.
+            app.hbm().createContact(new ContactData("firstname", "middlename", "lastname", "nickname", "", "", "adddress", "", "", "", "", "", "", "", ""));
+        }
         var contacts = app.hbm().getContactList();
         var expected = contacts.stream().collect(Collectors.toMap(ContactData::id, contact ->
             Stream.of(contact.home(), contact.mobile(), contact.work(), contact.secondary())
@@ -23,6 +26,9 @@ public class ContactInfoTests extends TestBase {
 
     @Test
     void testEmail() {
+        if (app.hbm().getContactCount() == 0) { // Проверка наличия контакта. Если контакта нет - создаем его.
+            app.hbm().createContact(new ContactData("firstname", "middlename", "lastname", "nickname", "", "", "adddress", "", "", "", "", "", "", "", ""));
+        }
         var contacts = app.hbm().getContactList();
         var expected = contacts.stream().collect(Collectors.toMap(ContactData::id, contact ->
                 Stream.of(contact.email(), contact.email2(), contact.email3())
@@ -31,6 +37,5 @@ public class ContactInfoTests extends TestBase {
         ));
         var emails = app.contacts().getEmail();
         Assertions.assertEquals(expected, emails);
-
     }
 }
