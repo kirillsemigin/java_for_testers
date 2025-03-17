@@ -27,7 +27,7 @@ public class ContactInfoTests extends TestBase {
     @Test
     void testEmail() {
         if (app.hbm().getContactCount() == 0) { // Проверка наличия контакта. Если контакта нет - создаем его.
-            app.hbm().createContact(new ContactData("firstname", "middlename", "lastname", "nickname", "", "", "Test_adddress", "", "", "", "", "", "test@mail", "test2@mail", "test3"));
+            app.hbm().createContact(new ContactData("firstname", "middlename", "lastname", "nickname", "", "", "adddress", "", "", "", "", "", "test@mail", "test2@mail", "test3"));
         }
         var contacts = app.hbm().getContactList();
         var expected = contacts.stream().collect(Collectors.toMap(ContactData::id, contact ->
@@ -42,7 +42,7 @@ public class ContactInfoTests extends TestBase {
     @Test
     void testAddress() {
         if (app.hbm().getContactCount() == 0) { // Проверка наличия контакта. Если контакта нет - создаем его.
-            app.hbm().createContact(new ContactData("firstname", "middlename", "lastname", "nickname", "", "", "Test_adddress", "", "", "", "", "", "", "", ""));
+            app.hbm().createContact(new ContactData("firstname", "middlename", "lastname", "nickname", "", "", "adddress", "", "", "", "", "", "", "", ""));
         }
         var contacts = app.hbm().getContactList();
         var expected = contacts.stream().collect(Collectors.toMap(ContactData::id, contact ->
