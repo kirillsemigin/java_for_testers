@@ -24,6 +24,8 @@ public class ApplicationManager {
 
     private MailHelper mailHelper;
 
+    private UserHelper user;
+
     public void init(String Browser, Properties properties) {
         this.string = Browser;
         this.properties = properties;
@@ -80,4 +82,12 @@ public class ApplicationManager {
         return properties.getProperty(name);
 
     }
+
+    public UserHelper user() {
+        if (user == null) {
+            user = new UserHelper(this);
+        }
+        return user;
+    }
+
 }
