@@ -1,14 +1,14 @@
 package ru.stqa.mantis.tests;
 
 import org.junit.jupiter.api.Test;
+import ru.stqa.mantis.common.CommonFunctions;
 
 public class UserRegistrationTests extends TestBase{
 
     @Test
-    void canRegisterUser(String username) {
-        var email = String.format("%s@localhost", username);
-        // создать адрес на почтовом сервере (James Helper)
-        // открываем браузер и заполняем форму создания и отправляем (браузер)
+    void canRegisterUser() {
+      //  app.jamesCli().addUser(String.format("%s@localhost", CommonFunctions.randomString(8)), "password"); // создать адрес на почтовом сервере (James Helper)
+        app.driver().get("http://localhost/mantisbt-2.26.0/login_page.php"); // Open Browser
         // ждем почту (MailHelper)
         // извлекаем ссылку
         // проходим по ссылке и завершаем регистрацию (браузер)
