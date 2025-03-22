@@ -16,7 +16,7 @@ public class UserHelper extends HelperBase {
     public void signUpANewAccount() {
         click(By.xpath(String.format("//*[@id=\"login-box\"]/div/div[2]/a")));
         type(By.name("username"), "user1");
-        type(By.name("email"), "user1@localhost");
+        type(By.name("email"), "user2@localhost");
         click(By.xpath("//*[@id=\"signup-form\"]/fieldset/input[2]"));
     }
 }
