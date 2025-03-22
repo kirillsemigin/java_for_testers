@@ -1,4 +1,4 @@
 package ru.stqa.mantis.model;
 
-public record DeveloperMailUser() {
+public record DeveloperMailUser(String name, String token) {
 }
