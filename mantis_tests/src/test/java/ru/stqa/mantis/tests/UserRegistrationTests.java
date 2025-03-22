@@ -3,17 +3,23 @@ package ru.stqa.mantis.tests;
 import org.junit.jupiter.api.Test;
 import ru.stqa.mantis.common.CommonFunctions;
 
+import java.time.Duration;
+import java.util.regex.Pattern;
+
 public class UserRegistrationTests extends TestBase{
 
     @Test
-    void canRegisterUser() {
-        app.jamesApi().addUser(String.format("%s@localhost", CommonFunctions.randomString(8)), "password"); // создать адрес на почтовом сервере (James Helper)
-        app.driver().get("http://localhost/mantisbt-2.26.0/login_page.php"); // Open Browser
+     void canRegisterUser() {
+        app.jamesCli().addUser("user1@localhost", "password"); // создать адрес на почтовом сервере (James Helper)
+        app.driver().get("http://localhost/mantisbt-2.26.4/login_page.php"); // Open Browser
         app.user().signUpANewAccount();
-        // ждем почту (MailHelper)
-        // извлекаем ссылку
-        // проходим по ссылке и завершаем регистрацию (браузер)
-        // проверяем что пользователь может залогиниться (HttpSessionHelper)
-
+        var message = app.mail().receive("user1@localhost", "password", Duration.ofSeconds(10)); // ждем почту (MailHelper)
+        var text = message.get(0).content();
+        var pattern = Pattern.compile("http://\\S*"); // извлекаем ссылку
+        var matcher = pattern.matcher(text);
+        if (matcher.find()) {
+            var url = text.substring(matcher.start(), matcher.end());
+            System.out.println(url);
+        }
     }
 }
