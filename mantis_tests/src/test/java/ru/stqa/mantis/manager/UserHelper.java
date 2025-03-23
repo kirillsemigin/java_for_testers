@@ -28,5 +28,19 @@ public class UserHelper extends HelperBase {
         click(By.xpath("//*[@id=\"account-update-form\"]/fieldset/span/button"));
     }
 
+    public void startCreation(String user, String email) {
+        if (!manager.session().isLoggedIn()) {
+            manager.session().login(manager.property("web.username"), manager.property("web_password"));
+        }
+        manager.driver().get(String.format("%s/manage_user_create_page.php", manager.property("web.browser")));
+        type(By.name("username"), user);
+        type(By.name("realname"),user);
+        type(By.name("email"), email);
+        click(By.cssSelector("input[type='submit']"));
+    }
+
+    public void finishCreation(String url, String password) {
+
+    }
 
 }
