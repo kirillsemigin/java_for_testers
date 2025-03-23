@@ -19,7 +19,7 @@ public class UserCreationTest extends TestBase {
         var email = String.format("%s@developermail.com", user.name());
 
 
-//        app.user().startCreation(user);
+ //       app.user().startCreation(user);
 //
 //        var messages = app.mail().receive(email, password, Duration.ofSeconds(10));
 //        var url = CommonFunctions.extractUrl(messages.get(0).content());
