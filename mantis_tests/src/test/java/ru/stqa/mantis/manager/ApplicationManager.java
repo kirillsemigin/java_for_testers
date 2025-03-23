@@ -10,6 +10,7 @@ import java.util.Properties;
 
 public class ApplicationManager {
 
+    private RestApiHelper restApiHelper;
     private WebDriver driver;
 
     private String string;
@@ -106,6 +107,13 @@ public class ApplicationManager {
             developerMailHelper = new DeveloperMailHelper(this);
         }
         return developerMailHelper;
+    }
+
+    public RestApiHelper restApiHelper() {
+        if (restApiHelper == null) {
+            restApiHelper = new RestApiHelper(this);
+        }
+        return restApiHelper;
     }
 
 
