@@ -109,7 +109,7 @@ public class ApplicationManager {
         return developerMailHelper;
     }
 
-    public RestApiHelper restApiHelper() {
+    public RestApiHelper rest() {
         if (restApiHelper == null) {
             restApiHelper = new RestApiHelper(this);
         }
