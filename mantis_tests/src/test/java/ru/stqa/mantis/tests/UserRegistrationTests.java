@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import ru.stqa.mantis.common.CommonFunctions;
+import ru.stqa.mantis.manager.MailHelper;
 import ru.stqa.mantis.model.UserData;
 
 import java.time.Duration;
@@ -49,4 +50,20 @@ public class UserRegistrationTests extends TestBase{
         app.http().login(username, password); // Try to log-in
         Assertions.assertTrue(app.http().isLoggedIn()); // Check if log-in is successful
     }
+
+    @ParameterizedTest
+    @MethodSource("userProvider")
+    void canRegistrateUserWithRestApi(String username) {
+        var email = String.format("%s@localhost", username);
+        var password = CommonFunctions.randomString(8);
+        app.jamesApi().addUser(email, password);
+        app.user().signUpANewAccount(username, email);
+        var messages = app.mail().receive(email, password, Duration.ofSeconds(10));
+        var url = MailHelper.getLinkFromMail(messages.get(0).content());
+        app.driver().get(url);
+        app.user().approveRegistration(username, password);
+        app.http().login(username, password);
+        Assertions.assertTrue(app.http().isLoggedIn());
+    }
+
 }

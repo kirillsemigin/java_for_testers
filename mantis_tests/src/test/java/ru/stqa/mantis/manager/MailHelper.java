@@ -8,8 +8,10 @@ import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-public class MailHelper extends HelperBase{
+public class MailHelper extends HelperBase {
     public MailHelper(ApplicationManager manager) {
         super(manager);
 
@@ -80,9 +82,19 @@ public class MailHelper extends HelperBase{
         } catch (MessagingException e) {
             throw new RuntimeException(e);
         }
-
-
     }
+
+    public static String getLinkFromMail(String text) {
+
+        Pattern pattern = Pattern.compile("http://\\S*");
+        Matcher matcher = pattern.matcher(text);
+
+        if (matcher.find()) {
+            return text.substring(matcher.start(), matcher.end());
+        }
+        throw new RuntimeException("No Link found in mail");
+    }
+
 }
 
 
