@@ -1,5 +1,6 @@
 package tests;
 
+import io.qameta.allure.Allure;
 import model.ContactData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -11,9 +12,11 @@ public class ContactModificationTest extends TestBase{
 
     @Test
     void canModifyContact() {
-        if (app.hbm().getContactCount() == 0) { // Проверка наличия контакта перед удалением. Если контакта нет - создаем его.
-            app.hbm().createContact(new ContactData("firstname", "middlename", "lastname", "nickname", "", "company", "address", "", "", "", "", "", "", "", ""));
-        }
+        Allure.step("Checking precondition", step -> {
+            if (app.hbm().getContactCount() == 0) { // Проверка наличия контакта перед удалением. Если контакта нет - создаем его.
+                app.hbm().createContact(new ContactData("firstname", "middlename", "lastname", "nickname", "", "company", "address", "", "", "", "", "", "", "", ""));
+            }
+        });
         var oldContacts = app.hbm().getContactList();
         var rnd = new Random();
         var index = rnd.nextInt(oldContacts.size());
@@ -27,6 +30,9 @@ public class ContactModificationTest extends TestBase{
         var expectedList = new ArrayList<>(oldContacts);
         expectedList.set(index, testData.withId(oldContacts.get(index).id()));
         expectedList.sort(compareById);
-        Assertions.assertEquals(newContacts, expectedList);
+        Allure.step("Checking result", step -> {
+            Assertions.assertEquals(newContacts, expectedList);
+        });
+
     }
 }

@@ -1,5 +1,6 @@
 package manager;
 
+import io.qameta.allure.Step;
 import model.ContactData;
 import model.GroupData;
 import org.openqa.selenium.By;
@@ -81,7 +82,7 @@ public class ContactHelper extends HelperBase {
         new Select(manager.driver.findElement(By.name("new_group"))).selectByValue(group.id());
 
     }
-
+    @Step
     public void createContactWithoutPhoto(ContactData contacts) { // Create user without photo
         initContactCreation();
         fillContactFormWithOutPhoto(contacts);
@@ -206,6 +207,7 @@ public class ContactHelper extends HelperBase {
         click(By.name("update"));
     }
 
+    @Step
     public void modifyContact(ContactData contact, ContactData modifiedContact) {
         openHomePage();
         selectContactToModify(contact);

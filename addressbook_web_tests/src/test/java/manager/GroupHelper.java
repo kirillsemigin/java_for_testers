@@ -25,7 +25,7 @@ public class GroupHelper extends HelperBase {
         openGroupsPage();
         return manager.isElementPresent(By.name("selected[]"));
     }
-
+    @Step
     public void createGroup(GroupData group) {
         openGroupsPage();
         initGroupCreation();
