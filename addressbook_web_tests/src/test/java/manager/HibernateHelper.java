@@ -10,6 +10,7 @@ import org.hibernate.cfg.AvailableSettings;
 import org.hibernate.cfg.Configuration;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -117,7 +118,8 @@ public class HibernateHelper extends HelperBase {
 
     public List<ContactData> getContactsInGroup(GroupData group) {
         return (sessionFactory.fromSession(session -> {
-            return convertContactList(session.get(GroupRecord.class, group.id()).contacts);
+            GroupRecord groupRecord = session.get(GroupRecord.class, group.id());
+            return groupRecord != null ? convertContactList(groupRecord.contacts) : Collections.emptyList();
         }));
     }
 }

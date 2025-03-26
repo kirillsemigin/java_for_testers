@@ -51,7 +51,7 @@ public class ContactHelper extends HelperBase {
         openHomePage();
     }
 
-    public void deleteContactFromGroup(ContactData contact, GroupData group) {
+    public void deleteContactFromGroup(GroupData group, ContactData contact) {
         openHomePage();
         selectGroupOnMainPage(group);
         selectContact(contact);

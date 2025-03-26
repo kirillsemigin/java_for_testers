@@ -29,37 +29,50 @@ public class ContactAndGroupRelationTest extends TestBase {
 
     @Test
     void AddContactToGroup() {
-        if (app.hbm().getContactCount() == 0) { // Проверяем есть ли контакт для добавления в группу. Если контакта нет - создаем его.
-            app.hbm().createContact(new ContactData("New Name", "New Middlename", "New Lastname", "New Nickname", "", "", "New Address", "", "", "", "", "", "", "", ""));
-        }
         if (app.hbm().getGroupCount() == 0) { // Проверяем существует ли группа. Если группы нет - создаем ее.
             app.hbm().createGroup(new GroupData("", "New group", "New header", "New footer"));
         }
-        var group = app.hbm().getGroupList();
-        var gr = new Random();
-        var group_index = gr.nextInt(group.size());
-        var contacts = app.hbm().getContactList();
-        var rnd = new Random();
-        var index = rnd.nextInt(contacts.size());
-        app.contacts().addContactToGroup(contacts.get(index), group.get(group_index));
+
+        var group = app.hbm().getGroupList().get(0); // Получаем первую группу
+        if (app.hbm().getContactCount() == 0) { // Проверяем существует ли пользователь. Если нет - создаем его.
+            var contact = new ContactData()
+                    .withName(CommonFunctions.randomString(7))
+                    .withLastName(CommonFunctions.randomString(7));
+            app.contacts().createContactWithoutPhoto(contact);
+        }
+
+        var contact = app.hbm().getContactList().get(0); // Получаем первого пользователя
+        var contactsInGroup = app.hbm().getContactsInGroup(group); // Получаем список пользователей в группе
+        app.contacts().addContactToGroup(contact, group); // Добавляем пользователя в группу
+        var result = app.hbm().getContactsInGroup(group); // Получаем список пользователей в группе после добавления
+        Assertions.assertEquals(contactsInGroup.size() + 1, result.size());
 
     }
 
     @Test
     void DeleteContactFromGroup() {
-        if (app.hbm().getContactCount() == 0) { // Проверяем есть ли контакт для добавления в группу. Если контакта нет - создаем его.
-            app.hbm().createContact(new ContactData("New Name", "New Middlename", "New Lastname", "New Nickname", "", "", "New Address", "", "", "", "", "", "", "", ""));
-        }
         if (app.hbm().getGroupCount() == 0) { // Проверяем существует ли группа. Если группы нет - создаем ее.
             app.hbm().createGroup(new GroupData("", "New group", "New header", "New footer"));
         }
-        var group = app.hbm().getGroupList();
-        var gr = new Random();
-        var group_index = gr.nextInt(group.size());
-        var contacts = app.hbm().getContactList();
+        var groups = app.hbm().getGroupList(); // Получаем список групп
         var rnd = new Random();
-        var index = rnd.nextInt(contacts.size());
-        app.contacts().deleteContactFromGroup(contacts.get(index), group.get(group_index));
+        var group = groups.get(rnd.nextInt(groups.size()));
+        var contactsInGroup = app.hbm().getContactsInGroup(group); // Получаем список пользователей, которые есть в группе
+        if (contactsInGroup.isEmpty()) { // Если в группе нет пользователей - создаем пользователя и добавляем в группу.
+            var contact = new ContactData()
+                    .withName(CommonFunctions.randomString(7))
+                    .withLastName(CommonFunctions.randomString(7));
+            app.contacts().addContactToGroup(contact, group);
+
+        }
+        var addedContactsInGroup = app.hbm().getContactsInGroup(group);
+
+        var contactToDelete = addedContactsInGroup.get(0); // Выбираем пользователя первого пользователя
+        app.contacts().deleteContactFromGroup(group,contactToDelete); // Удаляем пользователя из группы
+
+        var result = app.hbm().getContactsInGroup(group); // Получаем результирующий список пользователей в группе
+        Assertions.assertFalse(result.contains(contactToDelete));
+
     }
 
 
